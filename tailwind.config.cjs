@@ -12,6 +12,7 @@ module.exports = {
 			primary: colors.amber,
 			text: '#e7e5e4',
 			bg: '#292524',
+			tile: '#e3aa54',
 			stone: colors.stone
 		},
 		extend: {}
