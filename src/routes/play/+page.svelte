@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Letter from '$lib/components/Letter.svelte';
+	import Board from '$lib/components/Board.svelte';
 
-	let playedLetters = ['h', 'e', 'l'];
-	let unplayedLetters = ['o', 'e', 'l'];
+	let playedLetters: string[] = ['h', 'e', 'l'];
+	let unplayedLetters: string[] = ['o', 'e', 'l'];
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
-		let letter: any;
+		let letter: string;
 		if (index < 0) {
 			console.log('nope');
 			return;
@@ -24,7 +24,7 @@
 		}
 	};
 
-	function handleKeydown(event: any) {
+	function handleKeydown(event: { key: string; keyCode: number }) {
 		if (event.key == 'Backspace') {
 			moveLetter(false, playedLetters.length - 1);
 		} else if (event.keyCode >= 65 && event.keyCode <= 90) {
@@ -37,16 +37,12 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="flex border-2 p-2">
-	{#each playedLetters as letter, index}
-		<Letter value={letter} on:click={() => moveLetter(false, index)} />
-	{/each}
-</div>
+<Board letters={playedLetters} {moveLetter} />
 
-<br />
+<button
+	class="border-2 text-xl rounded-md p-2 bg-bg-600
+hover:bg-bg-700
+transition-colors">Check</button
+>
 
-<div class="flex border-2 p-2">
-	{#each unplayedLetters as letter, index}
-		<Letter value={letter} on:click={() => moveLetter(true, index)} />
-	{/each}
-</div>
+<Board letters={unplayedLetters} {moveLetter} />

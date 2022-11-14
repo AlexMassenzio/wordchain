@@ -6,6 +6,7 @@ specifiers:
   '@sveltejs/kit': next
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/svelte': ^3.2.2
+  '@testing-library/user-event': ^14.4.3
   '@types/jest': ^29.2.2
   '@types/testing-library__jest-dom': ^5.14.5
   '@typescript-eslint/eslint-plugin': ^5.27.0
@@ -34,6 +35,7 @@ devDependencies:
   '@sveltejs/kit': 1.0.0-next.544_svelte@3.52.0+vite@3.2.3
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/svelte': 3.2.2_svelte@3.52.0
+  '@testing-library/user-event': 14.4.3
   '@types/jest': 29.2.2
   '@types/testing-library__jest-dom': 5.14.5
   '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
@@ -375,6 +377,13 @@ packages:
     dependencies:
       '@testing-library/dom': 8.19.0
       svelte: 3.52.0
+    dev: true
+
+  /@testing-library/user-event/14.4.3:
+    resolution: {integrity: sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
     dev: true
 
   /@tootallnate/once/2.0.0:
