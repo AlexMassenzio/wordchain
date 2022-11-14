@@ -24,7 +24,7 @@
 		}
 	};
 
-	function handleKeydown(event: { key: string; keyCode: number }) {
+	function handleKeydown(event: any) {
 		if (event.key == 'Backspace') {
 			moveLetter(false, playedLetters.length - 1);
 		} else if (event.keyCode >= 65 && event.keyCode <= 90) {
@@ -37,7 +37,7 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<Board letters={playedLetters} {moveLetter} />
+<Board letters={playedLetters} isHand={false} {moveLetter} />
 
 <button
 	class="border-2 text-xl rounded-md p-2 bg-bg-600
@@ -45,4 +45,4 @@ hover:bg-bg-700
 transition-colors">Check</button
 >
 
-<Board letters={unplayedLetters} {moveLetter} />
+<Board letters={unplayedLetters} isHand={true} {moveLetter} />
