@@ -1,11 +1,14 @@
 <script lang="ts">
 	import Board from '$lib/components/Board.svelte';
+	import { formWord, type LetterData } from '$lib/utils/letterDataUtils';
+	import { createLetterData } from '$lib/utils/letterDataUtils';
+	import { checkIfValidWord } from '$lib/utils/wordCheckUtils';
 
-	let playedLetters: string[] = ['h', 'e', 'l'];
-	let unplayedLetters: string[] = ['o', 'e', 'l'];
+	let playedLetters: LetterData[] = createLetterData(['h', 'e', 'l']);
+	let unplayedLetters: LetterData[] = createLetterData(['o', 'e', 'l']);
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
-		let letter: string;
+		let letter: LetterData;
 		if (index < 0) {
 			console.log('nope');
 			return;
@@ -28,11 +31,21 @@
 		if (event.key == 'Backspace') {
 			moveLetter(false, playedLetters.length - 1);
 		} else if (event.keyCode >= 65 && event.keyCode <= 90) {
-			let unplayedLetterIndex: number = unplayedLetters.findIndex((letter) => letter == event.key);
+			let unplayedLetterIndex: number = unplayedLetters.findIndex(
+				(letter) => letter.value == event.key
+			);
 			console.log(unplayedLetterIndex);
 			moveLetter(true, unplayedLetterIndex);
 		}
 	}
+
+	const processWord = () => {
+		const wordToCheck = formWord(playedLetters);
+
+		if (checkIfValidWord(wordToCheck)) {
+			//TODO
+		}
+	};
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -42,7 +55,8 @@
 <button
 	class="border-2 text-xl rounded-md p-2 bg-bg-600
 hover:bg-bg-700
-transition-colors">Check</button
+transition-colors"
+	on:click={processWord}>Check</button
 >
 
 <Board letters={unplayedLetters} isHand={true} {moveLetter} />
