@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Board from '$lib/components/Board.svelte';
-	import { formWord, type LetterData } from '$lib/utils/letterDataUtils';
+	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
 	import { checkIfValidWord } from '$lib/utils/wordCheckUtils';
 
-	let playedLetters: LetterData[] = createLetterData(['h', 'e', 'l']);
+	let playedLetters: LetterData[] = createLetterData(['h', 'e', 'l'], true);
 	let unplayedLetters: LetterData[] = createLetterData(['o', 'e', 'l']);
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
@@ -28,14 +28,18 @@
 	};
 
 	function handleKeydown(event: any) {
-		if (event.key == 'Backspace') {
+		// Allow backspace if the last letter is a part of our play
+		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
-		} else if (event.keyCode >= 65 && event.keyCode <= 90) {
+		}
+		// Autofill a letter for convienence
+		else if (event.keyCode >= 65 && event.keyCode <= 90) {
 			let unplayedLetterIndex: number = unplayedLetters.findIndex(
 				(letter) => letter.value == event.key
 			);
-			console.log(unplayedLetterIndex);
 			moveLetter(true, unplayedLetterIndex);
+		} else if (event.key == 'Enter') {
+			processWord();
 		}
 	}
 
@@ -43,7 +47,13 @@
 		const wordToCheck = formWord(playedLetters);
 
 		if (checkIfValidWord(wordToCheck)) {
-			//TODO
+			playedLetters = makeWordUsed(playedLetters, wordToCheck);
+			const remainingLetters = createLetterData(
+				Array.from({ length: 7 - unplayedLetters.length }, () =>
+					String.fromCharCode(97 + Math.floor(Math.random() * 26))
+				)
+			);
+			unplayedLetters = [...unplayedLetters, ...remainingLetters];
 		}
 	};
 </script>

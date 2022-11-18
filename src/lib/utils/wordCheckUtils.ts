@@ -1,5 +1,5 @@
-import dictonary from '$lib/assets/dictionary.json';
+import { dictionary } from '$lib/assets/dictionary';
 
 export const checkIfValidWord = (word: string) => {
-	return true;
+	return dictionary[word.toLowerCase()] == 1;
 };

@@ -9,6 +9,6 @@
 
 <div class="flex border-2 p-2">
 	{#each letters as letter, index}
-		<Letter value={letter.value} on:click={() => moveLetter(isHand, index)} />
+		<Letter {letter} on:click={() => moveLetter(isHand, index)} />
 	{/each}
 </div>

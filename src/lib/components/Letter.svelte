@@ -1,11 +1,16 @@
 <script lang="ts">
-	export let value = '';
+	import type { LetterData } from '$lib/utils/letterDataUtils';
+
+	export let letter: LetterData;
 </script>
 
 <button
 	data-testid="value-container"
-	class="flex border-2 rounded w-16 h-16 items-center justify-center text-2xl bg-tile text-bg select-none"
+	class="flex border-2 rounded w-16 h-16 items-center justify-center text-2xl {letter.state !=
+	'used'
+		? 'bg-tile text-bg'
+		: 'bg-bg border-text text-text'} select-none"
 	on:click
 >
-	{value.toUpperCase()}
+	{letter.value.toUpperCase()}
 </button>

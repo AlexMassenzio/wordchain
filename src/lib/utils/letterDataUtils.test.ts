@@ -71,8 +71,22 @@ it('should return a the letter array with the word specified used.', () => {
 		{ value: 'x', state: 'used' },
 		{ value: 'h', state: 'used' },
 		{ value: 'o', state: 'used' },
-		{ value: 'w', state: 'used' }
+		{ value: 'w', state: 'firstLetter' }
 	];
 
 	expect(makeWordUsed(letterDataArray, 'how')).toEqual(expectedLetterArray);
+});
+describe('when the word does not match up with the letter array', () => {
+	it('should return a the letter array with the word specified used.', () => {
+		const letterDataArray: LetterData[] = [
+			{ value: 'x', state: 'used' },
+			{ value: 'h', state: 'firstLetter' },
+			{ value: 'o', state: 'inPlay' },
+			{ value: 'w', state: 'inPlay' }
+		];
+
+		expect(() => {
+			makeWordUsed(letterDataArray, 'howl');
+		}).toThrow('Could not find matching word');
+	});
 });
