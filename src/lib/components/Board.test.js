@@ -8,7 +8,8 @@ it('should render 3 Letter components', () => {
 			{ value: 'a', state: 'used' },
 			{ value: 'b', state: 'used' },
 			{ value: 'c', state: 'used' }
-		]
+		],
+		moveLetter: () => {}
 	});
 
 	expect(screen.getAllByTestId('value-container').length).toBe(3);

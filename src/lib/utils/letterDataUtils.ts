@@ -1,10 +1,15 @@
+import shuffleArray from './shuffle';
+
 export type LetterData = {
 	value: string;
 	state: string;
 };
 
-export const createLetterData = (letterArray: string[], init = false) => {
+export const createLetterData = (letterArray: string[], init = false, shuffle = false) => {
+	if (shuffle) letterArray = shuffleArray(letterArray);
+
 	let letterDataArray: LetterData[] = [];
+
 	letterArray.forEach((letter) => {
 		letterDataArray.push({
 			value: letter,

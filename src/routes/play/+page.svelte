@@ -2,10 +2,14 @@
 	import Board from '$lib/components/Board.svelte';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
-	import { checkIfValidWord } from '$lib/utils/wordCheckUtils';
+	import shuffle from '$lib/utils/shuffle';
+	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
 
-	let playedLetters: LetterData[] = createLetterData(['h', 'e', 'l'], true);
-	let unplayedLetters: LetterData[] = createLetterData(['o', 'e', 'l']);
+	let wordToGuess: string = generateWord();
+	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
+	let unplayedLetters: LetterData[] = createLetterData([...wordToGuess.substring(1)]);
+
+	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
 		let letter: LetterData;
@@ -48,12 +52,7 @@
 
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
-			const remainingLetters = createLetterData(
-				Array.from({ length: 7 - unplayedLetters.length }, () =>
-					String.fromCharCode(97 + Math.floor(Math.random() * 26))
-				)
-			);
-			unplayedLetters = [...unplayedLetters, ...remainingLetters];
+			wordToGuess = generateWord(playedLetters[playedLetters.length - 1].value);
 		}
 	};
 </script>
