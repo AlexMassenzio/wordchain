@@ -9,12 +9,12 @@
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[] = createLetterData([...wordToGuess.substring(1)]);
 
+	// update the board when we get a new word to guess
 	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
 		let letter: LetterData;
 		if (index < 0) {
-			console.log('nope');
 			return;
 		}
 
@@ -24,6 +24,7 @@
 			unplayedLetters.splice(index, 1);
 			unplayedLetters = unplayedLetters;
 		} else if (!toPlayed && playedLetters.length > 0) {
+			if (playedLetters[index].state != 'inPlay') return; //check if move is valid
 			letter = playedLetters[index];
 			unplayedLetters = [...unplayedLetters, letter];
 			playedLetters.splice(index, 1);
