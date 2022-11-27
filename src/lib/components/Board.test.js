@@ -9,7 +9,9 @@ it('should render 3 Letter components', () => {
 			{ value: 'b', state: 'used' },
 			{ value: 'c', state: 'used' }
 		],
-		moveLetter: () => {}
+		moveLetter: () => {
+			return;
+		}
 	});
 
 	expect(screen.getAllByTestId('value-container').length).toBe(3);

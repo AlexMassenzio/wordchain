@@ -8,7 +8,7 @@ export type LetterData = {
 export const createLetterData = (letterArray: string[], init = false, shuffle = false) => {
 	if (shuffle) letterArray = shuffleArray(letterArray);
 
-	let letterDataArray: LetterData[] = [];
+	const letterDataArray: LetterData[] = [];
 
 	letterArray.forEach((letter) => {
 		letterDataArray.push({
@@ -23,7 +23,7 @@ export const createLetterData = (letterArray: string[], init = false, shuffle = 
 };
 
 export const formWord = (letterArray: LetterData[]) => {
-	let formedWord: string = '';
+	let formedWord = '';
 
 	letterArray.forEach((letter) => {
 		if (letter.state != 'used') formedWord += letter.value;

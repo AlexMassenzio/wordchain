@@ -2,10 +2,10 @@
 	import Board from '$lib/components/Board.svelte';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
-	import shuffle from '$lib/utils/shuffle';
 	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
 
-	let wordToGuess: string = generateWord();
+	let solvedWords = 0;
+	let wordToGuess: string = generateWord(solvedWords);
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[] = createLetterData([...wordToGuess.substring(1)]);
 
@@ -53,7 +53,7 @@
 
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
-			wordToGuess = generateWord(playedLetters[playedLetters.length - 1].value);
+			wordToGuess = generateWord(++solvedWords, playedLetters[playedLetters.length - 1].value);
 		}
 	};
 </script>

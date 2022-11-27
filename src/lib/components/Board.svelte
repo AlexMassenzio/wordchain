@@ -3,7 +3,7 @@
 	import Letter from './Letter.svelte';
 
 	export let letters: LetterData[];
-	export let isHand: boolean = true;
+	export let isHand = true;
 	export let moveLetter: (toPlayed: boolean, index: number) => void;
 </script>
 
