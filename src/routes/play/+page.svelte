@@ -82,7 +82,9 @@ transition-colors"
 		on:click={processWord}>Check</button
 	>
 
-	<p class="italic text-stone-500 text-center p-2 text-xl">Hint: use</p>
+	<p class="italic text-stone-500 text-center p-2 text-xl">
+		Hint: You can use your keyboard on desktop!
+	</p>
 {:else}
 	<GameSummary timeCompleted={elapsedTime / 1000} />
 {/if}
