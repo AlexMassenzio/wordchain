@@ -13,9 +13,14 @@ module.exports = {
 			text: '#e7e5e4',
 			bg: '#292524',
 			tile: '#e3aa54',
-			stone: colors.stone
+			stone: colors.stone,
+			cyan: colors.cyan
 		},
-		extend: {}
+		extend: {
+			spacing: {
+				128: '32rem'
+			}
+		}
 	},
 	plugins: []
 };

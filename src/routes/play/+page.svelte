@@ -1,13 +1,18 @@
 <script lang="ts">
 	import Board from '$lib/components/Board.svelte';
+	import GameSummary from '$lib/components/GameSummary.svelte';
+	import Timer from '$lib/components/Timer.svelte';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
 	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
 
+	const wordsToSolve = 3;
 	let solvedWords = 0;
 	let wordToGuess: string = generateWord(solvedWords);
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[] = createLetterData([...wordToGuess.substring(1)]);
+
+	let elapsedTime = 0;
 
 	// update the board when we get a new word to guess
 	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
@@ -32,7 +37,7 @@
 		}
 	};
 
-	function handleKeydown(event: any) {
+	function handleKeydown(event: { key: string; keyCode: number }) {
 		// Allow backspace if the last letter is a part of our play
 		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
@@ -54,19 +59,27 @@
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
 			wordToGuess = generateWord(++solvedWords, playedLetters[playedLetters.length - 1].value);
+			console.log(wordToGuess);
 		}
 	};
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-<Board letters={playedLetters} isHand={false} {moveLetter} />
+{#if solvedWords < wordsToSolve}
+	<Timer bind:elapsed={elapsedTime} />
+	<Board letters={playedLetters} isHand={false} {moveLetter} />
+	<p class="italic text-stone-500 text-center p-2 text-3xl">{solvedWords}/7</p>
+	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
-<button
-	class="border-2 text-xl rounded-md p-2 bg-bg-600
-hover:bg-bg-700
+	<button
+		class="block m-auto mt-4 border-2 text-xl rounded-md p-2 bg-bg-600
+hover:bg-stone-600
 transition-colors"
-	on:click={processWord}>Check</button
->
+		on:click={processWord}>Check</button
+	>
 
-<Board letters={unplayedLetters} isHand={true} {moveLetter} />
+	<p class="italic text-stone-500 text-center p-2 text-xl">Hint: use</p>
+{:else}
+	<GameSummary timeCompleted={elapsedTime / 1000} />
+{/if}

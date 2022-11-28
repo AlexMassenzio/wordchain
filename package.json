@@ -1,6 +1,6 @@
 {
 	"name": "link-race",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -44,6 +44,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"prando": "^6.0.1"
+		"@testing-library/dom": "^8.19.0",
+		"fs": "0.0.1-security",
+		"prando": "^6.0.1",
+		"url": "^0.11.0"
 	}
 }
