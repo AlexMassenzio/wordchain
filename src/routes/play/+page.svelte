@@ -68,8 +68,11 @@
 
 {#if solvedWords < wordsToSolve}
 	<Timer bind:elapsed={elapsedTime} />
+
 	<Board letters={playedLetters} isHand={false} {moveLetter} />
-	<p class="italic text-stone-500 text-center p-2 text-3xl">{solvedWords}/7</p>
+
+	<p class="italic text-stone-500 text-center p-2 text-3xl">{solvedWords}/{wordsToSolve}</p>
+
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
 	<button
