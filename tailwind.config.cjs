@@ -14,7 +14,8 @@ module.exports = {
 			bg: '#292524',
 			tile: '#e3aa54',
 			stone: colors.stone,
-			cyan: colors.cyan
+			cyan: colors.cyan,
+			green: colors.green
 		},
 		extend: {
 			spacing: {

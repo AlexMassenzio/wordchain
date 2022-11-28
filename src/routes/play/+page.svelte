@@ -86,5 +86,5 @@ transition-colors"
 		Hint: You can use your keyboard on desktop!
 	</p>
 {:else}
-	<GameSummary timeCompleted={elapsedTime / 1000} />
+	<GameSummary {solvedWords} {wordsToSolve} timeCompleted={elapsedTime / 1000} />
 {/if}

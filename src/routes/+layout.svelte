@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 
-	const version = '0.1.1'; //process.env.npm_package_version;
+	const version = '0.2.0'; //process.env.npm_package_version;
 </script>
 
 <div class="bg-bg text-text h-screen">
