@@ -11,8 +11,8 @@ export const generateWord = (solvedWords: number, firstLetter = '') => {
 
 	if (firstLetter.length > 0) {
 		const wordsWithFirstLetter = dictionary.filter((word) => word[0] == firstLetter);
-		return wordsWithFirstLetter[Math.floor(rng.next(wordsWithFirstLetter.length))];
+		return wordsWithFirstLetter[rng.nextInt(0, wordsWithFirstLetter.length)];
 	} else {
-		return dictionary[Math.floor(rng.next(dictionary.length))];
+		return dictionary[rng.nextInt(0, dictionary.length)];
 	}
 };

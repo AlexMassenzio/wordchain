@@ -1,6 +1,6 @@
 {
-	"name": "link-race",
-	"version": "0.2.0",
+	"name": "wordchain",
+	"version": "0.3.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -15,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "1.25.0",
+		"@rgossiaux/svelte-headlessui": "^1.0.2",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@testing-library/jest-dom": "^5.16.5",

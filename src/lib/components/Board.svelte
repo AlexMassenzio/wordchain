@@ -10,7 +10,6 @@
 	let container: HTMLElement;
 
 	afterUpdate(() => {
-		console.log(letters[letters.length - 1]?.value.toString());
 		if (letters) scrollToBottom(container);
 	});
 

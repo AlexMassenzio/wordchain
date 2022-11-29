@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css';
-
-	const version = '0.2.0'; //process.env.npm_package_version;
+	import { appVersion } from '$lib/store';
 </script>
 
-<div class="bg-bg text-text h-screen">
+<div class="fixed bg-bg text-text inset-0">
 	<slot />
-	<footer class="fixed left-0 bottom-0 w-screen">
-		<p class="italic text-stone-500 text-right p-2 text-2xl">v{version}</p>
+	<footer class="fixed grid grid-cols-3 left-0 bottom-0 w-screen">
+		<p class="col-start-2 text-stone-500 text-center p-2 text-2xl">©Alex Massenzio 2022</p>
+		<p class="italic text-stone-500 flex justify-end items-end p-2 text-2xl">v{$appVersion}</p>
 	</footer>
 </div>

@@ -6,16 +6,17 @@
 	import { createLetterData } from '$lib/utils/letterDataUtils';
 	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
 
-	const wordsToSolve = 3;
+	const wordsToSolve = 7;
 	let solvedWords = 0;
 	let wordToGuess: string = generateWord(solvedWords);
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
-	let unplayedLetters: LetterData[] = createLetterData([...wordToGuess.substring(1)]);
+	let unplayedLetters: LetterData[];
 
 	let elapsedTime = 0;
 
 	// update the board when we get a new word to guess
 	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
+	$: gameComplete = solvedWords == wordsToSolve;
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
 		let letter: LetterData;
@@ -59,20 +60,16 @@
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
 			wordToGuess = generateWord(++solvedWords, playedLetters[playedLetters.length - 1].value);
-			console.log(wordToGuess);
 		}
 	};
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-{#if solvedWords < wordsToSolve}
+{#if !gameComplete}
 	<Timer bind:elapsed={elapsedTime} />
-
 	<Board letters={playedLetters} isHand={false} {moveLetter} />
-
 	<p class="italic text-stone-500 text-center p-2 text-3xl">{solvedWords}/{wordsToSolve}</p>
-
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
 	<button
@@ -85,6 +82,14 @@ transition-colors"
 	<p class="italic text-stone-500 text-center p-2 text-xl">
 		Hint: You can use your keyboard on desktop!
 	</p>
+
+	<!-- Debug retire button -->
+	<!-- <button
+		class="block m-auto mt-4 border-2 text-xl rounded-md p-2 bg-bg-600
+hover:bg-stone-600
+transition-colors"
+		on:click={() => (gameComplete = true)}>Retire</button
+	> -->
 {:else}
 	<GameSummary {solvedWords} {wordsToSolve} timeCompleted={elapsedTime / 1000} />
 {/if}

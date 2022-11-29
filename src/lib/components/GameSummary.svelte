@@ -14,7 +14,7 @@
 		let completionEmoji = solvedWords == wordsToSolve ? '✅ ' : '❌ ';
 		// Copy the text inside the text field
 		navigator.clipboard.writeText(
-			'link-race #' +
+			'Wordchain #' +
 				gameNumber +
 				formattedDate +
 				'\n' +
@@ -25,7 +25,7 @@
 				'\n🏁 ' +
 				timeCompleted.toFixed(2) +
 				's\n' +
-				'https://link-race.vercel.app/'
+				'https://wordcha.in/'
 		);
 		copied = true;
 	};
@@ -36,7 +36,7 @@
 </script>
 
 <div class="text-center">
-	<h1 class="pt-10 text-6xl">Total time completed: {timeCompleted.toFixed(2)}</h1>
+	<h1 class="pt-10 text-6xl">Total time completed: {timeCompleted.toFixed(2)}s</h1>
 
 	<h2 class="pt-16 text-8xl">🎉</h2>
 
@@ -46,5 +46,10 @@
 		transition-colors"
 		on:click={copyToClipboard}
 		on:mouseleave={resetCopyButton}>{copied ? 'Copied!' : 'Share Results'}</button
+	>
+	<a
+		class=" border-2 rounded-md p-2 mt-8 text-text border-stone-200 text-xl bg-stone-800
+		transition-colors"
+		href="/">Home</a
 	>
 </div>
