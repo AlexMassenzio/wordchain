@@ -11,9 +11,10 @@
 
 	export let isOpen = true;
 
-	let lastVersionIndex = changelog.findIndex((version) => version.version != $appVersion);
-	if (lastVersionIndex) lastVersionIndex = 1;
-	let filteredChangelog = changelog.slice(0, lastVersionIndex);
+	// let lastVersionIndex = changelog.findIndex((version) => version.version != $appVersion);
+	// if (lastVersionIndex == -1) lastVersionIndex = 10;
+	// let filteredChangelog = changelog.slice(0, lastVersionIndex);
+	let filteredChangelog = changelog.slice(0, 10);
 
 	const closeChangelog = () => {
 		window.localStorage.setItem('lastVersion', $appVersion);

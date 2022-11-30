@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.3.3',
+		changes: ['Minor improvements.']
+	},
+	{
 		version: '0.3.2',
 		changes: ['Fixed bug where changelog would open every page load.']
 	},

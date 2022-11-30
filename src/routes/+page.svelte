@@ -3,10 +3,12 @@
 	import { appVersion } from '$lib/store';
 	import Changelog from '$lib/components/Changelog.svelte';
 
-	let newVersion = true;
+	let newVersion = false;
 
 	if (browser) {
-		newVersion = window.localStorage.getItem('lastVersion') != $appVersion;
+		let lastVersion = window.localStorage.getItem('lastVersion');
+		console.log(lastVersion);
+		newVersion = lastVersion !== null && lastVersion != $appVersion;
 	}
 </script>
 
