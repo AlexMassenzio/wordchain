@@ -1,6 +1,6 @@
 {
 	"name": "wordchain",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -46,6 +46,7 @@
 	"type": "module",
 	"dependencies": {
 		"@testing-library/dom": "^8.19.0",
+		"@vercel/analytics": "^0.1.5",
 		"fs": "0.0.1-security",
 		"prando": "^6.0.1",
 		"url": "^0.11.0"

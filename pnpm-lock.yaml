@@ -13,6 +13,7 @@ specifiers:
   '@types/testing-library__jest-dom': ^5.14.5
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.27.0
+  '@vercel/analytics': ^0.1.5
   autoprefixer: ^10.4.13
   eslint: ^8.16.0
   eslint-config-prettier: ^8.3.0
@@ -36,6 +37,7 @@ specifiers:
 
 dependencies:
   '@testing-library/dom': 8.19.0
+  '@vercel/analytics': 0.1.5
   fs: 0.0.1-security
   prando: 6.0.1
   url: 0.11.0
@@ -562,6 +564,12 @@ packages:
       '@typescript-eslint/types': 5.42.1
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@vercel/analytics/0.1.5:
+    resolution: {integrity: sha512-/k9N8Ea3Yc5A52GlkjzUEbi2vE/izClrOf++ryBkxEfrZM/OZwtHkdNw/QExZ1h/B67RCZLK7bCOnKKrhG7gTg==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dev: false
 
   /abab/2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
