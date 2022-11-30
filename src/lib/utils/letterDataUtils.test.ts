@@ -1,4 +1,17 @@
 import { createLetterData, formWord, makeWordUsed, type LetterData } from './letterDataUtils';
+import { vi } from 'vitest';
+
+vi.mock('svelte/store', () => {
+	return {
+		get: vi.fn()
+	};
+});
+
+vi.mock('$lib/store', () => {
+	return {
+		gameProgress: 0
+	};
+});
 
 //createLetterData()
 describe('when given an array of letters', () => {

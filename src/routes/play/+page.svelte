@@ -3,13 +3,16 @@
 	import Board from '$lib/components/Board.svelte';
 	import GameSummary from '$lib/components/GameSummary.svelte';
 	import Timer from '$lib/components/Timer.svelte';
+	import { gameProgress } from '$lib/store';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
 	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
 
+	gameProgress.set(0);
+
 	const wordsToSolve = 7;
-	let solvedWords = 0;
-	let wordToGuess: string = generateWord(solvedWords);
+
+	let wordToGuess: string = generateWord($gameProgress);
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[];
 
@@ -68,9 +71,10 @@
 
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
-			wordToGuess = generateWord(++solvedWords, playedLetters[playedLetters.length - 1].value);
+			gameProgress.update((progress) => progress + 1);
+			wordToGuess = generateWord($gameProgress, playedLetters[playedLetters.length - 1].value);
 
-			gameComplete = solvedWords == wordsToSolve;
+			gameComplete = $gameProgress == wordsToSolve;
 		}
 	};
 </script>
@@ -80,7 +84,7 @@
 {#if !gameComplete}
 	<Timer bind:elapsed={elapsedTime} />
 	<Board letters={playedLetters} isHand={false} {moveLetter} />
-	<p class="italic text-stone-500 text-center p-2 text-3xl">{solvedWords}/{wordsToSolve}</p>
+	<p class="italic text-stone-500 text-center p-2 text-3xl">{$gameProgress}/{wordsToSolve}</p>
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
 	<button
@@ -104,7 +108,7 @@ transition-colors"
 {:else}
 	<GameSummary
 		{wasGameAlreadyPlayed}
-		{solvedWords}
+		solvedWords={$gameProgress}
 		{wordsToSolve}
 		timeCompleted={elapsedTime / 1000}
 	/>
