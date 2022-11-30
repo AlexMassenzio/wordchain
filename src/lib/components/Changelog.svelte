@@ -16,7 +16,7 @@
 	let filteredChangelog = changelog.slice(0, lastVersionIndex);
 
 	const closeChangelog = () => {
-		window.localStorage.setItem('lastVersion', '0.3.0');
+		window.localStorage.setItem('lastVersion', $appVersion);
 		isOpen = false;
 	};
 </script>
