@@ -15,6 +15,11 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
+		csp: {
+			directives: {
+				'connect-src': ['vitals.vercel-insights.com', 'self']
+			}
+		},
 		version: {
 			name: pkg.version
 		}
