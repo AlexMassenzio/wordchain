@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import { appVersion } from '$lib/store';
-	import { inject } from '@vercel/analytics';
 	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
 
 	inject({ debug: dev });
 </script>

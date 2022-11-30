@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import Board from '$lib/components/Board.svelte';
 	import GameSummary from '$lib/components/GameSummary.svelte';
 	import Timer from '$lib/components/Timer.svelte';
@@ -12,11 +13,19 @@
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[];
 
+	let gameComplete = false;
+	let wasGameAlreadyPlayed = false;
+
 	let elapsedTime = 0;
+	let now = new Date();
 
 	// update the board when we get a new word to guess
 	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
-	$: gameComplete = solvedWords == wordsToSolve;
+
+	if (browser && window.localStorage.getItem('lastPlayed') == now.toDateString()) {
+		gameComplete = true;
+		wasGameAlreadyPlayed = true;
+	}
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
 		let letter: LetterData;
@@ -60,6 +69,8 @@
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
 			wordToGuess = generateWord(++solvedWords, playedLetters[playedLetters.length - 1].value);
+
+			gameComplete = solvedWords == wordsToSolve;
 		}
 	};
 </script>
@@ -91,5 +102,10 @@ transition-colors"
 		on:click={() => (gameComplete = true)}>Retire</button
 	> -->
 {:else}
-	<GameSummary {solvedWords} {wordsToSolve} timeCompleted={elapsedTime / 1000} />
+	<GameSummary
+		{wasGameAlreadyPlayed}
+		{solvedWords}
+		{wordsToSolve}
+		timeCompleted={elapsedTime / 1000}
+	/>
 {/if}

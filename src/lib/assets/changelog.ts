@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.4.0',
+		changes: ['Users can now play the daily once per day.', 'Mobile-friendly formatting.']
+	},
+	{
 		version: '0.3.3',
 		changes: ['Minor improvements.']
 	},
