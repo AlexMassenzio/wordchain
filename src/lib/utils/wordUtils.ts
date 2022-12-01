@@ -9,17 +9,11 @@ export const generateWord = (solvedWords: number, firstLetter = '') => {
 	const date = new Date();
 	const rng = new Prando(date.getDay().toString() + ' ' + solvedWords);
 
-	let generatedWord: string;
-
+	// If the generated word needs to have a specific first letter.
 	if (firstLetter.length > 0) {
 		const wordsWithFirstLetter = dictionary.filter((word) => word[0] == firstLetter);
-		generatedWord = wordsWithFirstLetter[rng.nextInt(0, wordsWithFirstLetter.length)];
-
-		if (typeof generatedWord == 'undefined') {
-			generatedWord = wordsWithFirstLetter[0];
-		}
-
-		return generatedWord;
+		const randomIndex = rng.nextInt(0, wordsWithFirstLetter.length - 1);
+		return wordsWithFirstLetter[randomIndex];
 	} else {
 		return dictionary[rng.nextInt(0, dictionary.length)];
 	}
