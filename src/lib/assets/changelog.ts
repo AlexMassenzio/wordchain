@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.4.2',
+		changes: ['Changelog now displays properly on mobile devices.']
+	},
+	{
 		version: '0.4.1',
 		changes: ['Word shuffle no longers shuffles every word in the same order.']
 	},

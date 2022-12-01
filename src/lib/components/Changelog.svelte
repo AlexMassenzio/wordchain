@@ -29,10 +29,10 @@
 		/>
 	</div>
 
-	<div out:scale class="fixed z-10 inset-1/4 rounded-2xl bg-stone-200 p-8">
+	<div out:scale class="fixed z-10 inset-10 sm:inset-1/4 rounded-2xl bg-stone-200 p-8">
 		<div class="overflow-y-auto max-h-full">
 			<DialogTitle class="text-4xl">Changelog</DialogTitle>
-			<DialogDescription class="text-2xl mb-2">What's new in {$appVersion}?</DialogDescription>
+			<DialogDescription class="text-2xl mb-2">What's new?</DialogDescription>
 			{#each filteredChangelog as version}
 				<h1 class={version.version.at(-1) == '0' ? 'text-4xl' : 'text-xl'}>
 					{version.version}
