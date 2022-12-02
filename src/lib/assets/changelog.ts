@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.5.0',
+		changes: ['Game now has a How to Play section.']
+	},
+	{
 		version: '0.4.2',
 		changes: ['Changelog now displays properly on mobile devices.']
 	},
