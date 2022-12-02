@@ -1,10 +1,5 @@
 <script>
-	import {
-		Dialog,
-		DialogOverlay,
-		DialogTitle,
-		DialogDescription
-	} from '@rgossiaux/svelte-headlessui';
+	import { Dialog, DialogOverlay, DialogTitle } from '@rgossiaux/svelte-headlessui';
 	import { scale, fade } from 'svelte/transition';
 
 	export let isOpen = true;
@@ -36,14 +31,18 @@
 			</video>
 
 			<div class="mt-8">
-				<p>In Wordchain, your goal is to</p>
-				<p>The first letter</p>
+				<h1 class="text-2xl">Connect the Wordchain with five-letter words!</h1>
+				<h2 class="text-xl mt-2">The first letter is placed automatically.</h2>
+				<h2 class="text-xl">
+					The last letter of the previous word becomes the first letter of the new word.
+				</h2>
+				<h2 class="text-xl">You can tap letter tiles or use your keyboard on PC to play.</h2>
 			</div>
-		</div>
 
-		<button
-			class="border-2 text-lg rounded-md p-2 py-1 bg-tile text-stone-800"
-			on:click={() => (isOpen = false)}>Close</button
-		>
+			<button
+				class="mt-8 border-2 text-lg rounded-md p-2 py-1 bg-tile text-stone-800"
+				on:click={() => (isOpen = false)}>Close</button
+			>
+		</div>
 	</div>
 </Dialog>
