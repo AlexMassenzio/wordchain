@@ -1,34 +1,55 @@
 import { checkIfValidWord, generateWord } from './wordUtils';
 
-// checkIfValidWord
-describe('When given a set of words', () => {
-	it('should correctly decide which words are in a dictonary.', () => {
-		const realWord = 'Hello';
-		const fakeWord = 'Hellodufhs';
+describe('checkIfValidWord', () => {
+  describe('given a real word', () => {
+    it('returns true', () => {
+      expect(checkIfValidWord('Hello')).toBe(true);
+    });
+  });
 
-		expect(checkIfValidWord(realWord)).toBe(true);
-		expect(checkIfValidWord(fakeWord)).toBe(false);
-	});
+  describe('given a fake word', () => {
+    it('returns true', () => {
+      expect(checkIfValidWord('WelcomeToTheGrove')).toBe(false);
+    });
+  });
 });
 
-// generateWord
-it('should return a newly generated word from the dictionary.', () => {
-	const word: string = generateWord(1);
-	expect(word.length).toBe(5);
-});
+describe('generateWord', () => {
+  it('returns a word having 5 letters', () => {
+    const word = generateWord(1);
 
-describe('when firstLetter param is being used', () => {
-	it('should return a newly generated word using the first letter provided.', () => {
-		const word: string = generateWord(1, 'h');
-		expect(word.length).toBe(5);
-		expect(word[0]).toBe('h');
-	});
-});
+    expect(word.length).toBe(5);
+  });
 
-it('should ensure that word generation is properly using seeding.', () => {
-	const word: string = generateWord(2);
-	const word2: string = generateWord(2);
-	const word3: string = generateWord(3);
-	expect(word).toBe(word2);
-	expect(word).not.toBe(word3);
+  describe('given a specific first letter', () => {
+    it('returns a word having 5 letters', () => {
+      const word = generateWord(1, 'h');
+
+      expect(word.length).toBe(5);
+    });
+
+    it('returns a word with the same first letter as requested', () => {
+      const word = generateWord(1, 'h');
+      
+      expect(word[0]).toBe('h');
+    })
+  });
+  
+  describe('when invoked with the same seed', () => {
+    it('generates the same word each time', () => {
+      const word = generateWord(42);
+      const word2 = generateWord(42);
+
+      expect(word).toBe(word2);
+    });
+  });
+
+  describe('when invoked with different seeds', () => {
+    it('generates the same word each time', () => {
+      const word = generateWord(17);
+      const word2 = generateWord(38);
+
+      expect(word).not.toBe(word2);
+    });
+  });
 });
