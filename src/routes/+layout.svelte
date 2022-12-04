@@ -1,10 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import { appVersion } from '$lib/store';
-	import { dev } from '$app/environment';
-	import { inject } from '@vercel/analytics';
-
-	inject({ debug: dev });
 </script>
 
 <div class="fixed bg-bg text-text inset-0">

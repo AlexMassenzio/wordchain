@@ -6,6 +6,7 @@
 	export let letters: LetterData[];
 	export let isHand = true;
 	export let moveLetter: (toPlayed: boolean, index: number) => void;
+	export let wrongGuess = false;
 
 	let container: HTMLElement;
 
@@ -18,11 +19,21 @@
 	};
 </script>
 
-<div
-	bind:this={container}
-	class="flex m-auto w-96 mv-2 min-h-[84px] border-2 p-2 overflow-x-hidden"
->
-	{#each letters as letter, index}
-		<Letter {letter} on:click={() => moveLetter(isHand, index)} />
-	{/each}
+<div class="relative">
+	<!-- Blur effect for wrong guesses -->
+	<div
+		class="absolute w-96 inset-0 m-auto bg-red-500 rounded-md blur-md
+				{wrongGuess ? 'opacity-100' : 'opacity-0'}
+				transition-all"
+	/>
+
+	<div
+		bind:this={container}
+		class="relative bg-bg flex m-auto w-96 mv-2 min-h-[84px] rounded-md border-2 p-2 overflow-x-hidden
+		{wrongGuess && 'animate-shake'} transition-all"
+	>
+		{#each letters as letter, index}
+			<Letter {letter} on:click={() => moveLetter(isHand, index)} />
+		{/each}
+	</div>
 </div>
