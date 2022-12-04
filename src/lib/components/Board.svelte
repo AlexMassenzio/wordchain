@@ -30,7 +30,7 @@
 	<div
 		bind:this={container}
 		class="relative bg-bg flex m-auto w-96 mv-2 min-h-[84px] rounded-md border-2 p-2 overflow-x-hidden
-		{wrongGuess && 'animate-shake'} transition-all"
+		{wrongGuess && 'animate-shake border-red-400'} transition-all"
 	>
 		{#each letters as letter, index}
 			<Letter {letter} on:click={() => moveLetter(isHand, index)} />
