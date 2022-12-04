@@ -8,10 +8,18 @@ export const checkIfValidWord = (word: string) => {
 export const generateWord = (solvedWords: number, firstLetter = '') => {
 	const date = new Date();
 	const rng = new Prando(date.getDay().toString() + ' ' + solvedWords);
+	
+	let generatedWord: string;
 
 	if (firstLetter.length > 0) {
 		const wordsWithFirstLetter = dictionary.filter((word) => word[0] == firstLetter);
-		return wordsWithFirstLetter[rng.nextInt(0, wordsWithFirstLetter.length)];
+		generatedWord = wordsWithFirstLetter[rng.nextInt(0, wordsWithFirstLetter.length)];
+			
+		if (typeof generatedWord == 'undefined') {
+			generatedWord = wordsWithFirstLetter[0];
+		}
+		
+		return generatedWord;
 	} else {
 		return dictionary[rng.nextInt(0, dictionary.length)];
 	}
