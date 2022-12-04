@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.6.0',
+		changes: ['New visual feedback on incorrect guesses.']
+	},
+	{
 		version: '0.5.0',
 		changes: ['Game now has a How to Play section.']
 	},
