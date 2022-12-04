@@ -22,6 +22,8 @@
 	let elapsedTime = 0;
 	let now = new Date();
 
+	let wrongGuess = false;
+
 	// update the board when we get a new word to guess
 	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
 
@@ -75,6 +77,12 @@
 			wordToGuess = generateWord($gameProgress, playedLetters[playedLetters.length - 1].value);
 
 			gameComplete = $gameProgress == wordsToSolve;
+		} else {
+			wrongGuess = true;
+
+			setTimeout(() => {
+				wrongGuess = false;
+			}, 500);
 		}
 	};
 </script>
@@ -83,7 +91,7 @@
 
 {#if !gameComplete}
 	<Timer bind:elapsed={elapsedTime} />
-	<Board letters={playedLetters} isHand={false} {moveLetter} />
+	<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
 	<p class="italic text-stone-500 text-center p-2 text-3xl">{$gameProgress}/{wordsToSolve}</p>
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
