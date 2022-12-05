@@ -2,7 +2,7 @@ import { vi, type Mock } from 'vitest';
 import rng from './getRandomNumberGenerator';
 import getShuffledWord, { rearrangeLettersManually } from './shuffle';
 
-// TODO: I don't think we should have to mock these stores here.
+// TODO: Figure out how to not mock these store modules.
 vi.mock('svelte/store', () => ({ get: vi.fn() }));
 vi.mock('$lib/store', () => ({ gameProgress: 0 }));
 vi.mock('./getRandomNumberGenerator');
