@@ -5,7 +5,7 @@ export const checkIfValidWord = (word: string) => {
 	return dictionary.includes(word.toLowerCase());
 };
 
-export const generateWord = (solvedWords: number, firstLetter = '') => {
+export const generateWord = (solvedWords: number, firstLetter = ''): string => {
 	const date = new Date();
 	const rng = new Prando(date.getDay().toString() + ' ' + solvedWords);
 
