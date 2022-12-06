@@ -52,4 +52,13 @@ describe('generateWord', () => {
 			expect(word).not.toBe(word2);
 		});
 	});
+
+	// Issue #17
+	describe('when invoked with x as the first letter', () => {
+		it('generates a word that starts with x', () => {
+			const word = generateWord(1, 'x');
+
+			expect(word[0]).toBe('x');
+		});
+	});
 });
