@@ -1,14 +1,32 @@
-import Prando from 'prando';
-import { get } from 'svelte/store';
-import { gameProgress } from '$lib/store';
+import areArraysEqual from './areArraysEqual';
+import rng from './getRandomNumberGenerator';
 
-export default (array: string[]) => {
-	const today = new Date();
-	const rng = new Prando(today.toDateString() + get(gameProgress));
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = rng.nextInt(0, i + 1);
-		[array[i], array[j]] = [array[j], array[i]];
+export const getShuffledWord = (letters: string[]): string[] => {
+	const rearrangedWord = rearrangeLettersWithRng(letters);
+
+	const isShuffledWordUnchanged = areArraysEqual(letters, rearrangedWord);
+	if (isShuffledWordUnchanged) return rearrangeLettersManually(letters);
+
+	return rearrangedWord;
+};
+
+const rearrangeLettersWithRng = (letters: string[]) => {
+	const newLetters = [...letters];
+
+	for (let i = newLetters.length - 1; i > 0; i--) {
+		const j = rng.nextInt(0, i);
+
+		[newLetters[i], newLetters[j]] = [newLetters[j], newLetters[i]];
 	}
 
-	return array;
+	return newLetters;
 };
+
+export const rearrangeLettersManually = (letters: string[]) => [
+	letters[2],
+	letters[0],
+	letters[3],
+	letters[1]
+];
+
+export default getShuffledWord;
