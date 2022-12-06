@@ -1,12 +1,5 @@
 import { render, screen } from '@testing-library/svelte';
-import { vi } from 'vitest';
 import GameSummary from './GameSummary.svelte';
-
-vi.mock('$app/environment', () => {
-	return {
-		browser: true
-	};
-});
 
 it('Should display the time taken to complete', () => {
 	const totalCompletionTime = 10.521543;
