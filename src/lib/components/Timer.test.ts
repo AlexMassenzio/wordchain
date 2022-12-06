@@ -1,12 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/svelte';
-import { vi } from 'vitest';
 import Timer from './Timer.svelte';
-
-vi.mock('$app/environment', () => {
-	return {
-		browser: true
-	};
-});
 
 describe('When the timer has been rendered for two seconds', () => {
 	it('Should count to around 2 seconds.', async () => {
