@@ -2305,6 +2305,7 @@ export const dictionary = [
 	'yearn',
 	'yeast',
 	'yield',
+	'yikes',
 	'young',
 	'youth',
 	'yucca',
