@@ -19,7 +19,7 @@ describe('given arrays with different elements', () => {
 });
 
 describe('given arrays with different types of elements', () => {
-	it('returns true', () => {
+	it('returns false', () => {
 		const arr1 = [1, '2', 3];
 		const arr2 = [1, 2, 3];
 
