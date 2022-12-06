@@ -2299,6 +2299,7 @@ export const dictionary = [
 	'wrote',
 	'wrung',
 	'wryly',
+	'xenon',
 	'yacht',
 	'yearn',
 	'yeast',
