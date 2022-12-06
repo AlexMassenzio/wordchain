@@ -10,7 +10,7 @@ describe('given arrays with the same elements', () => {
 });
 
 describe('given arrays with different elements', () => {
-	it('returns true', () => {
+	it('returns false', () => {
 		const arr1 = [1, 2, 3];
 		const arr2 = [1, 3, 3, 7];
 
