@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.8.0',
+		changes: ['No more duplicate words 🐧', 'New words added.']
+	},
+	{
 		version: '0.7.0',
 		changes: ['Improved word shuffling.', 'New words added.']
 	},

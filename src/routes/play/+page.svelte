@@ -11,8 +11,9 @@
 	gameProgress.set(0);
 
 	const wordsToSolve = 7;
+	let solvedWords: string[] = [];
 
-	let wordToGuess: string = generateWord($gameProgress);
+	let wordToGuess: string = generateWord(solvedWords);
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[];
 
@@ -74,7 +75,8 @@
 		if (checkIfValidWord(wordToCheck)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
 			gameProgress.update((progress) => progress + 1);
-			wordToGuess = generateWord($gameProgress, playedLetters[playedLetters.length - 1].value);
+			solvedWords.push(wordToCheck);
+			wordToGuess = generateWord(solvedWords);
 
 			gameComplete = $gameProgress == wordsToSolve;
 		} else {
