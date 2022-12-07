@@ -18,11 +18,11 @@ export const generateWord = (solvedWords: string[] = []): string => {
 	if (solvedWords.length > 0) {
 		const firstLetter = solvedWords[solvedWords.length - 1].at(-1);
 		const wordsWithFirstLetter = dictionary.filter((word) => word[0] == firstLetter);
-		const solvedWordsRemoved = wordsWithFirstLetter.filter((word) => !solvedWords.includes(word));
+		const unusedWords = wordsWithFirstLetter.filter((word) => !solvedWords.includes(word));
 
-		if (solvedWordsRemoved.length > 0) {
-			const randomIndex = rng.nextInt(0, solvedWordsRemoved.length - 1);
-			return solvedWordsRemoved[randomIndex];
+		if (unusedWords.length > 0) {
+			const randomIndex = rng.nextInt(0, unusedWords.length - 1);
+			return unusedWords[randomIndex];
 		}
 
 		// All words with the same first letter have been solved, just pick a random word that starts with firstLetter.
