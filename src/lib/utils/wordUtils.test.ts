@@ -63,4 +63,22 @@ describe('generateWord', () => {
 			expect(word[0]).toBe('x');
 		});
 	});
+
+	describe('when invoked with only one y word not used yet', () => {
+		it('generates yucca', () => {
+			const word = generateWord([
+				'yacht',
+				'yahoo',
+				'yearn',
+				'yeast',
+				'yield',
+				'yikes',
+				'young',
+				'youth',
+				'happy'
+			]);
+
+			expect(word).toBe('yucca');
+		});
+	});
 });
