@@ -135,7 +135,6 @@ export const dictionary = [
 	'awash',
 	'awful',
 	'awoke',
-	'axial',
 	'axiom',
 	'axion',
 	'azure',
