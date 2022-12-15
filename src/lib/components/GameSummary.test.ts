@@ -3,7 +3,13 @@ import GameSummary from './GameSummary.svelte';
 
 it('Should display the time taken to complete', () => {
 	const totalCompletionTime = 10.521543;
-	render(GameSummary, { timeCompleted: totalCompletionTime, wasGameAlreadyPlayed: false });
+	render(GameSummary, {
+		gameType: 'chainSeven',
+		wordsToSolve: 7,
+		solvedWords: 7,
+		timeCompleted: totalCompletionTime,
+		wasGameAlreadyPlayed: false
+	});
 
 	const timeSummaryNode = screen.getByRole('heading', { level: 1 });
 	const timeFromNode = timeSummaryNode.textContent?.match(/[\d.]+/)?.at(0);
@@ -14,7 +20,13 @@ it('Should display the time taken to complete', () => {
 describe('When the wasGameAlreadyPlayed flag is set to true', () => {
 	it('Should not display the time taken to complete', () => {
 		const totalCompletionTime = 10.521543;
-		render(GameSummary, { timeCompleted: totalCompletionTime, wasGameAlreadyPlayed: true });
+		render(GameSummary, {
+			gameType: 'chainSeven',
+			wordsToSolve: 7,
+			solvedWords: 7,
+			timeCompleted: totalCompletionTime,
+			wasGameAlreadyPlayed: true
+		});
 
 		const timeSummaryNode = screen.getByRole('heading', { level: 1 });
 		const timeFromNode = timeSummaryNode.textContent?.match(/[\d.]+/)?.at(0);

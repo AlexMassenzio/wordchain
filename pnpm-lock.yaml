@@ -23,8 +23,9 @@ specifiers:
   jsdom: ^20.0.2
   postcss: ^8.4.18
   prando: ^6.0.1
-  prettier: ^2.6.2
+  prettier: ^2.7.1
   prettier-plugin-svelte: ^2.7.0
+  prettier-plugin-tailwindcss: ^0.2.1
   svelte: ^3.55.0
   svelte-check: ^2.7.1
   svelte-dnd-action: ^0.9.22
@@ -64,6 +65,7 @@ devDependencies:
   postcss: 8.4.18
   prettier: 2.7.1
   prettier-plugin-svelte: 2.8.0_uhw2lhpgcwcu2blwnxkrwkimce
+  prettier-plugin-tailwindcss: 0.2.1_prettier@2.7.1
   svelte: 3.55.0
   svelte-check: 2.9.2_lfepupfbzj3ypnmxg4cpbyo4wm
   svelte-dnd-action: 0.9.22_svelte@3.55.0
@@ -2797,6 +2799,15 @@ packages:
     dependencies:
       prettier: 2.7.1
       svelte: 3.55.0
+    dev: true
+
+  /prettier-plugin-tailwindcss/0.2.1_prettier@2.7.1:
+    resolution: {integrity: sha512-aIO8IguumORyRsmT+E7JfJ3A9FEoyhqZR7Au7TBOege3VZkgMvHJMkufeYp4zjnDK2iq4ktkvGMNOQR9T8lisQ==}
+    engines: {node: '>=12.17.0'}
+    peerDependencies:
+      prettier: '>=2.2.0'
+    dependencies:
+      prettier: 2.7.1
     dev: true
 
   /prettier/2.7.1:

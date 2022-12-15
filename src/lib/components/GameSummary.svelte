@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { getGameSummary } from '$lib/utils/gameSummaryUtils';
 
 	export let wasGameAlreadyPlayed = true;
+
+	export let gameType: 'chainSeven' | 'oneMinute';
 
 	export let timeCompleted: number;
 	export let wordsToSolve: number;
@@ -10,29 +13,31 @@
 	let now = new Date();
 	let copied = false;
 
-	if (browser) window.localStorage.setItem('lastPlayed', now.toDateString());
+	if (browser) {
+		window.localStorage.setItem('lastPlayed', now.toDateString());
+
+		if (!wasGameAlreadyPlayed) {
+			const gameSummary = getGameSummary(gameType, {
+				timeCompleted: timeCompleted,
+				wordsToSolve: wordsToSolve,
+				solvedWords: solvedWords
+			});
+			window.localStorage.setItem('dailySummary', gameSummary);
+		}
+	}
 
 	const copyToClipboard = () => {
-		let gameBeginning = new Date('11/27/2022');
+		let gameSummary = window.localStorage.getItem('dailySummary');
 
-		let gameNumber = Math.floor((now.getTime() - gameBeginning.getTime()) / (1000 * 3600 * 24)) + 1;
-		let formattedDate = ' (' + +(now.getMonth() + 1) + '/' + now.getDate() + ')';
-		let completionEmoji = solvedWords == wordsToSolve ? '✅ ' : '❌ ';
-		// Copy the text inside the text field
-		navigator.clipboard.writeText(
-			'Wordchain #' +
-				gameNumber +
-				formattedDate +
-				'\n' +
-				completionEmoji +
-				+solvedWords +
-				'/' +
-				wordsToSolve +
-				'\n🏁 ' +
-				timeCompleted.toFixed(2) +
-				's\n' +
-				'https://wordcha.in/'
-		);
+		if (gameSummary == null) {
+			gameSummary = getGameSummary(gameType, {
+				timeCompleted: timeCompleted,
+				wordsToSolve: wordsToSolve,
+				solvedWords: solvedWords
+			});
+		}
+
+		navigator.clipboard.writeText(gameSummary);
 		copied = true;
 	};
 
@@ -42,28 +47,28 @@
 </script>
 
 <div class="text-center">
-	<h1 class="pt-10 text-6xl">
+	<h1 class="pt-24 text-6xl">
 		{#if wasGameAlreadyPlayed}
 			You already completed today's challenge!
-		{:else}
+		{:else if gameType == 'chainSeven'}
 			Total time completed: {timeCompleted.toFixed(2)}s
+		{:else if gameType == 'oneMinute'}
+			Total words solved: {solvedWords}
 		{/if}
 	</h1>
 
-	<h2 class="pt-16 mb-8 text-8xl">🎉</h2>
+	<h2 class="my-12 text-8xl">🎉</h2>
 
-	{#if !wasGameAlreadyPlayed}
-		<button
-			class=" border-2 rounded-md p-2 text-stone-800 border-stone-200 text-xl
+	<button
+		class=" rounded-md border-2 border-stone-200 p-2 text-xl text-stone-800
 			{copied ? 'bg-green-600 ' : 'bg-tile '}
 			transition-colors"
-			on:click={copyToClipboard}
-			on:mouseleave={resetCopyButton}>{copied ? 'Copied!' : 'Share Results'}</button
-		>
-	{/if}
+		on:click={copyToClipboard}
+		on:mouseleave={resetCopyButton}>{copied ? 'Copied!' : 'Share Results'}</button
+	>
 
 	<a
-		class=" border-2 rounded-md p-2 text-text border-stone-200 text-xl bg-stone-800
+		class=" rounded-md border-2 border-stone-200 bg-stone-800 p-2 text-xl text-text
 		transition-colors"
 		href="/">Home</a
 	>

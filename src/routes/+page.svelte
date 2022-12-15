@@ -19,20 +19,20 @@
 </script>
 
 <div class="text-center">
-	<h1 class="text-6xl sm:text-8xl pt-36">Wordchain</h1>
+	<h1 class="pt-36 text-6xl sm:text-8xl">Wordchain</h1>
 	<div class="mt-8 align-middle">
 		<a
-			class="border-2 text-2xl sm:text-4xl rounded-md p-2 bg-tile text-stone-800
+			class="rounded-md border-2 bg-tile p-2 text-2xl text-stone-800 transition-colors
 			hover:bg-primary-700
-			transition-colors"
+			sm:text-4xl"
 			href="/play"
 		>
 			Play
 		</a>
 		<button
-			class="ml-2 border-2 text-2xl sm:text-2xl rounded-full p-2 w-12 h-12 bg-stone-800 text-stone-400
+			class="ml-2 h-12 w-12 rounded-full border-2 bg-stone-800 p-2 text-2xl text-stone-400 transition-colors
 		hover:bg-stone-600
-		transition-colors"
+		sm:text-2xl"
 			on:click={() => (isHowToPlayOpen = true)}>?</button
 		>
 	</div>

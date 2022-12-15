@@ -22,14 +22,14 @@
 <div class="relative">
 	<!-- Blur effect for wrong guesses -->
 	<div
-		class="absolute w-96 inset-0 m-auto bg-red-500 rounded-md blur-md
+		class="absolute inset-0 m-auto w-96 rounded-md bg-red-500 blur-md
 				{wrongGuess ? 'opacity-100' : 'opacity-0'}
 				transition-all"
 	/>
 
 	<div
 		bind:this={container}
-		class="relative bg-bg flex m-auto w-96 mv-2 min-h-[84px] rounded-md border-2 p-2 overflow-x-hidden
+		class="mv-2 relative m-auto flex min-h-[84px] w-96 overflow-x-hidden rounded-md border-2 bg-bg p-2
 		{wrongGuess && 'animate-shake border-red-400'} transition-all"
 	>
 		{#each letters as letter, index}

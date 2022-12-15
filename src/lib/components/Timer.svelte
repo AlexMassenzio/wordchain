@@ -2,7 +2,12 @@
 	import { browser } from '$app/environment';
 	import { onDestroy } from 'svelte';
 
-	export let elapsed = 0;
+	export let isCountingDown = false;
+
+	export let elapsed: number;
+
+	elapsed *= 1000;
+
 	if (browser) {
 		let last_time = window.performance.now();
 		let frame: number;
@@ -11,7 +16,8 @@
 			frame = requestAnimationFrame(update);
 
 			const time = window.performance.now();
-			elapsed += time - last_time;
+			if (isCountingDown) elapsed -= time - last_time;
+			else elapsed += time - last_time;
 
 			last_time = time;
 		})();
@@ -22,4 +28,4 @@
 	}
 </script>
 
-<h1 class=" text-center text-5xl p-10">{(elapsed / 1000).toFixed(1)}s</h1>
+<h1 class=" p-10 text-center text-5xl">{(elapsed / 1000).toFixed(1)}s</h1>
