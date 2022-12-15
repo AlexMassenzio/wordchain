@@ -5,7 +5,7 @@
 	const now = new Date();
 </script>
 
-{#if now.getDay() != 5}
+{#if now.getDay() == 5}
 	<OneMinuteGame />
 {:else}
 	<ChainSevenGame />
