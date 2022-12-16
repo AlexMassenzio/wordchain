@@ -25,14 +25,14 @@
 <Dialog open={isOpen} on:close={closeChangelog}>
 	<div out:fade>
 		<DialogOverlay
-			class="fixed top-0 left-0 bg-stone-800 bg-opacity-25 transition-opacity inset-0"
+			class="fixed inset-0 top-0 left-0 bg-stone-800 bg-opacity-25 transition-opacity"
 		/>
 	</div>
 
-	<div out:scale class="fixed z-10 inset-10 sm:inset-1/4 rounded-2xl bg-stone-200 p-8">
-		<div class="overflow-y-auto max-h-full">
+	<div out:scale class="fixed inset-10 z-10 rounded-2xl bg-stone-200 p-8 sm:inset-1/4">
+		<div class="max-h-full overflow-y-auto">
 			<DialogTitle class="text-4xl">Changelog</DialogTitle>
-			<DialogDescription class="text-2xl mb-2">What's new?</DialogDescription>
+			<DialogDescription class="mb-2 text-2xl">What's new?</DialogDescription>
 			{#each filteredChangelog as version}
 				<h1 class={version.version.at(-1) == '0' ? 'text-4xl' : 'text-xl'}>
 					{version.version}

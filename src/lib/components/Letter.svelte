@@ -23,7 +23,7 @@
 
 <button
 	data-testid="value-container"
-	class="mr-1 rounded w-16 h-16 text-2xl flex-none
+	class="mr-1 h-16 w-16 flex-none rounded text-2xl
 	{stateStyle}
 	select-none transition-colors"
 	on:click

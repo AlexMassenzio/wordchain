@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.9.0',
+		changes: ['New mode added, Wordash!', 'Your final results are now shareable, even on refresh.']
+	},
+	{
 		version: '0.8.0',
 		changes: ['No more duplicate words 🐧', 'New words added.']
 	},
