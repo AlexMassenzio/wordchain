@@ -48,7 +48,7 @@
 			<div
 				class="mv-2 relative m-auto flex w-64 flex-col justify-start overflow-x-hidden rounded-3xl border-2 bg-bg p-4 transition-all sm:w-96"
 			>
-				<h2 class="text-lg">Today's Special Mode: ⏱Wordash⏱</h2>
+				<h2 class="mx-4 text-lg">Today's Special Mode: ⏱Wordash⏱</h2>
 				<h3 class="text-md mt-4">Try to get as many words in one minute as possible!</h3>
 			</div>
 		</div>
