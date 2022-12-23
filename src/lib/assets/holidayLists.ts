@@ -9,7 +9,7 @@ export const holidayLists: HolidayData[] = [
 	{
 		name: "New Year's Day",
 		date: new Date(2022, 0, 1),
-		words: ['cheer', 'reflect', 'time', 'enjoy', 'year', 'resovle', 'eve'],
+		words: ['cheer', 'reflect', 'time', 'enjoy', 'year', 'resolve', 'eve'],
 		colors: ['from-yellow-200', 'to-zinc-200']
 	},
 	{
