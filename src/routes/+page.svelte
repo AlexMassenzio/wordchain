@@ -6,6 +6,7 @@
 	import SpecialGameBanner from '$lib/components/SpecialGameBanner.svelte';
 	import { getHolidayData, isTodayHoliday } from '$lib/utils/holidayUtils';
 	import type { HolidayData } from '$lib/assets/holidayLists';
+	import Snowfall from '$lib/components/Snowfall.svelte';
 
 	let isNewVersion = false;
 	let isHowToPlayOpen = false;
@@ -61,4 +62,8 @@
 
 {#if browser}
 	<Changelog bind:isOpen={isNewVersion} />
+{/if}
+
+{#if now.getMonth() == 11 && now.getDate() >= 24 && now.getDate() <= 25}
+	<Snowfall />
 {/if}
