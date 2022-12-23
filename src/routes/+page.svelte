@@ -3,9 +3,13 @@
 	import { appVersion } from '$lib/store';
 	import Changelog from '$lib/components/Changelog.svelte';
 	import HowToPlay from '$lib/components/HowToPlay.svelte';
+	import SpecialGameBanner from '$lib/components/SpecialGameBanner.svelte';
+	import { getHolidayData, isTodayHoliday } from '$lib/utils/holidayUtils';
+	import type { HolidayData } from '$lib/assets/holidayLists';
 
 	let isNewVersion = false;
 	let isHowToPlayOpen = false;
+	let holidayData = getHolidayData(new Date()) as HolidayData;
 
 	const now = new Date();
 
@@ -38,20 +42,18 @@
 			on:click={() => (isHowToPlayOpen = true)}>?</button
 		>
 	</div>
-	{#if now.getDay() == 5}
-		<div class="relative my-8">
-			<!-- Blur effect for wrong guesses -->
-			<div
-				class="absolute inset-0 m-auto w-64 rounded-3xl bg-gradient-to-br from-green-500 to-cyan-400 blur-md sm:w-96"
-			/>
-
-			<div
-				class="mv-2 relative m-auto flex w-64 flex-col justify-start overflow-x-hidden rounded-3xl border-2 bg-bg p-4 transition-all sm:w-96"
-			>
-				<h2 class="mx-4 text-lg">Today's Special Mode: ⏱Wordash⏱</h2>
-				<h3 class="text-md mt-4">Try to get as many words in one minute as possible!</h3>
-			</div>
-		</div>
+	{#if isTodayHoliday(now)}
+		<SpecialGameBanner
+			title={holidayData.name + '!'}
+			subtitle={'Play a special holiday game!'}
+			colors={holidayData.colors}
+		/>
+	{:else if now.getDay() == 5}
+		<SpecialGameBanner
+			title={"Today's Special Mode: ⏱Wordash⏱"}
+			subtitle={'Try to get as many words in one minute as possible!'}
+			colors={['from-green-500', 'to-cyan-400']}
+		/>
 	{/if}
 </div>
 

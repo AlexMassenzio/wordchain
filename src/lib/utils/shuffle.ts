@@ -5,7 +5,7 @@ export const getShuffledWord = (letters: string[]): string[] => {
 	const rearrangedWord = rearrangeLettersWithRng(letters);
 
 	const isShuffledWordUnchanged = areArraysEqual(letters, rearrangedWord);
-	if (isShuffledWordUnchanged) return rearrangeLettersManually(letters);
+	if (isShuffledWordUnchanged) return rearrangeLettersWithRng(letters);
 
 	return rearrangedWord;
 };
@@ -21,12 +21,5 @@ const rearrangeLettersWithRng = (letters: string[]) => {
 
 	return newLetters;
 };
-
-export const rearrangeLettersManually = (letters: string[]) => [
-	letters[2],
-	letters[0],
-	letters[3],
-	letters[1]
-];
 
 export default getShuffledWord;
