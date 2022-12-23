@@ -46,9 +46,7 @@
 
 	const moveLetter = (toPlayed: boolean, index: number) => {
 		let letter: LetterData;
-		if (index < 0) {
-			return;
-		}
+		if (index < 0) return;
 
 		if (toPlayed && unplayedLetters.length > 0) {
 			letter = unplayedLetters[index];
