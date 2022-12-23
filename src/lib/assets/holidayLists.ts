@@ -17,11 +17,5 @@ export const holidayLists: HolidayData[] = [
 		date: new Date(2022, 11, 25),
 		words: ['holly', 'yule', 'elf', 'frost', 'tree', 'eggnog', 'grinch'],
 		colors: ['from-red-400', 'to-green-500']
-	},
-	{
-		name: 'Christmas Day',
-		date: new Date(2022, 11, 23),
-		words: ['holly', 'yule', 'elf', 'frost', 'tree', 'eggnog', 'grinch'],
-		colors: ['from-red-400', 'to-green-500']
 	}
 ];
