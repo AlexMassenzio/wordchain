@@ -28,17 +28,18 @@ export const rearrangeLettersManually = (letters: string[]) => {
 	const secondHalf = letters.slice(letters.length / 2);
 
 	const rearrangedLetters: string[] = [];
-	letters.forEach(_ => {
-    const firstHalfLetter = firstHalf.shift();
-    const secondHalfLetter = secondHalf.shift();
-    if (rearrangedLetters.length % 2 === 0) {
-      if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
-      if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
-    } else {
-      if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
-      if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
-    }
-  })
+  // @typescript-eslint/no-unused-vars
+	letters.forEach((_) => {
+		const firstHalfLetter = firstHalf.shift();
+		const secondHalfLetter = secondHalf.shift();
+		if (rearrangedLetters.length % 2 === 0) {
+			if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+			if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+		} else {
+			if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+			if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+		}
+	});
 
 	return rearrangedLetters;
 };

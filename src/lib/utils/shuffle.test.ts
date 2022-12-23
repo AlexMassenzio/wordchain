@@ -32,33 +32,39 @@ describe('getShuffledWord', () => {
 });
 
 describe('rearrangeLettersManually', () => {
-  describe('given an empty array', () => {
-    it('returns an empty array', () => {
-      expect(rearrangeLettersManually([])).toEqual([]);
-    });
-  });
+	describe('given an empty array', () => {
+		it('returns an empty array', () => {
+			expect(rearrangeLettersManually([])).toEqual([]);
+		});
+	});
 
-  describe('given an array with one letter', () => {
-    it('returns the same array', () => {
-      expect(rearrangeLettersManually(['r'])).toEqual(['r']);
-    });
-  });
+	describe('given an array with one letter', () => {
+		it('returns the same array', () => {
+			expect(rearrangeLettersManually(['r'])).toEqual(['r']);
+		});
+	});
 
-  describe('given an array with two letters', () => {
-    it('returns the array backwards', () => {
-      expect(rearrangeLettersManually(['r', 'o'])).toEqual(['o', 'r']);
-    });
-  });
+	describe('given an array with two letters', () => {
+		it('returns the array backwards', () => {
+			expect(rearrangeLettersManually(['r', 'o'])).toEqual(['o', 'r']);
+		});
+	});
 
-  describe('given an odd amount of letters', () => {
-    it('shuffles the letters', () => {
-      expect(rearrangeLettersManually(['g', 'r', 'o', 'v', 'e'])).toEqual(['o', 'g', 'v', 'r', 'e']);
-    });
-  });
+	describe('given an odd amount of letters', () => {
+		it('shuffles the letters', () => {
+			expect(rearrangeLettersManually(['g', 'r', 'o', 'v', 'e'])).toEqual([
+				'o',
+				'g',
+				'v',
+				'r',
+				'e'
+			]);
+		});
+	});
 
-  describe('given an even amount of letters', () => {
-    it('shuffles the letters', () => {
-      expect(rearrangeLettersManually(['r', 'o', 'v', 'e'])).toEqual(['v', 'r', 'e', 'o']);
-    });
-  });
+	describe('given an even amount of letters', () => {
+		it('shuffles the letters', () => {
+			expect(rearrangeLettersManually(['r', 'o', 'v', 'e'])).toEqual(['v', 'r', 'e', 'o']);
+		});
+	});
 });
