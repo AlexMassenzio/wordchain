@@ -28,7 +28,7 @@ export const rearrangeLettersManually = (letters: string[]) => {
 	const secondHalf = letters.slice(letters.length / 2);
 
 	const rearrangedLetters: string[] = [];
-  // @typescript-eslint/no-unused-vars
+
 	letters.forEach((_) => {
 		const firstHalfLetter = firstHalf.shift();
 		const secondHalfLetter = secondHalf.shift();

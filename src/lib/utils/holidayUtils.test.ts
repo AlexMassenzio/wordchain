@@ -21,6 +21,7 @@ describe('getHolidayData', () => {
 			colors: ['from-red-400', 'to-green-500']
 		});
 	});
+
 	it('should return undefined if today is not a holiday', () => {
 		const result = getHolidayData(new Date(2022, 0, 3));
 		expect(result).toBe(undefined);

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { holidayLists } from '$lib/assets/holidayLists';
 	import Board from '$lib/components/Board.svelte';
 	import GameSummary from '$lib/components/GameSummary.svelte';
 	import Timer from '$lib/components/Timer.svelte';
@@ -10,15 +9,7 @@
 	import { checkIfValidWord } from '$lib/utils/wordUtils';
 
 	let now = new Date();
-	const wordList = holidayLists.find((list) => {
-		return now.getMonth() == list.date.getMonth() && now.getDate() == list.date.getDate();
-	})?.words;
-
-	if (wordList == undefined) {
-		throw new Error("No holiday found for today's date");
-	}
-
-	wordList.push(''); // finite list will break the reactive statement for unplayedLetters due to the array going out of bounds
+	export let wordList: string[];
 
 	gameProgress.set(0);
 
@@ -37,7 +28,11 @@
 	let wrongGuess = false;
 
 	// update the board when we get a new word to guess
-	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
+	$: {
+		if (wordToGuess !== undefined) {
+			unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
+		}
+	}
 
 	if (browser && window.localStorage.getItem('lastPlayed') == now.toDateString()) {
 		gameComplete = true;
@@ -83,11 +78,9 @@
 
 		if (checkIfValidWord(wordToCheck, wordList)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
-			console.log(playedLetters);
 			gameProgress.update((progress) => progress + 1);
 			solvedWords.push(wordToCheck);
 			wordToGuess = wordList[$gameProgress];
-			console.log(wordToGuess);
 
 			gameComplete = $gameProgress == wordsToSolve;
 		} else {
