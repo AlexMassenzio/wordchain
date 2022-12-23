@@ -27,12 +27,18 @@ export const rearrangeLettersManually = (letters: string[]) => {
 	const firstHalf = letters.slice(0, letters.length / 2);
 	const secondHalf = letters.slice(letters.length / 2);
 
-	// alternate the letters from the two parts
-	const rearrangedLetters = [];
-	for (let i = 0; i < letters.length; i++) {
-		if (i % 2 === 0) rearrangedLetters.push(firstHalf[i / 2]);
-		else rearrangedLetters.push(secondHalf[(i - 1) / 2]);
-	}
+	const rearrangedLetters: string[] = [];
+	letters.forEach(_ => {
+    const firstHalfLetter = firstHalf.shift();
+    const secondHalfLetter = secondHalf.shift();
+    if (rearrangedLetters.length % 2 === 0) {
+      if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+      if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+    } else {
+      if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+      if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+    }
+  })
 
 	return rearrangedLetters;
 };
