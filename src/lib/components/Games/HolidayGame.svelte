@@ -7,7 +7,7 @@
 	import { gameProgress } from '$lib/store';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
-	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
+	import { checkIfValidWord } from '$lib/utils/wordUtils';
 
 	let now = new Date();
 	const wordList = holidayLists.find((list) => {
