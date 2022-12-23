@@ -8,7 +8,7 @@ export type HolidayData = {
 export const holidayLists: HolidayData[] = [
 	{
 		name: "New Year's Day",
-		date: new Date(2022, 0, 1),
+		date: new Date(2023, 0, 1),
 		words: ['cheer', 'reflect', 'time', 'enjoy', 'year', 'resovle', 'eve'],
 		colors: ['from-yellow-200', 'to-zinc-200']
 	},
