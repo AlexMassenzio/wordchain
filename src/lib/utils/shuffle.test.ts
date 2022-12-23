@@ -15,7 +15,7 @@ describe('getShuffledWord', () => {
 			(rng.nextInt as Mock).mockReturnValueOnce(3).mockReturnValueOnce(2).mockReturnValueOnce(1);
 		});
 
-		it.skip('returns the word manually shuffled', () => {
+		it('returns the word manually shuffled', () => {
 			expect(getShuffledWord(lettersStub)).toEqual(rearrangeLettersManually(lettersStub));
 		});
 	});

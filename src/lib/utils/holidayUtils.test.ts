@@ -18,7 +18,7 @@ describe('getHolidayData', () => {
 			name: 'Christmas Day',
 			date: new Date(2022, 11, 25),
 			words: ['holly', 'yule', 'elf', 'frost', 'tree', 'eggnog', 'grinch'],
-			colors: ['red-400', 'green-500']
+			colors: ['from-red-400', 'to-green-500']
 		});
 	});
 	it('should return undefined if today is not a holiday', () => {
