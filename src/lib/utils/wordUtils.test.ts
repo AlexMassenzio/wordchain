@@ -12,6 +12,12 @@ describe('checkIfValidWord', () => {
 			expect(checkIfValidWord('WelcomeToTheGrove')).toBe(false);
 		});
 	});
+
+	describe('given a separate word list to check', () => {
+		it('returns true', () => {
+			expect(checkIfValidWord('qwerty', ['hello', 'qwerty'])).toBe(true);
+		});
+	});
 });
 
 describe('generateWord', () => {

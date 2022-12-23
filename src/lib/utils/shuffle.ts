@@ -22,11 +22,26 @@ const rearrangeLettersWithRng = (letters: string[]) => {
 	return newLetters;
 };
 
-export const rearrangeLettersManually = (letters: string[]) => [
-	letters[2],
-	letters[0],
-	letters[3],
-	letters[1]
-];
+export const rearrangeLettersManually = (letters: string[]) => {
+	// split the array into two parts
+	const firstHalf = letters.slice(0, letters.length / 2);
+	const secondHalf = letters.slice(letters.length / 2);
+
+	const rearrangedLetters: string[] = [];
+
+	letters.forEach((_) => {
+		const firstHalfLetter = firstHalf.shift();
+		const secondHalfLetter = secondHalf.shift();
+		if (rearrangedLetters.length % 2 === 0) {
+			if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+			if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+		} else {
+			if (firstHalfLetter) rearrangedLetters.push(firstHalfLetter);
+			if (secondHalfLetter) rearrangedLetters.push(secondHalfLetter);
+		}
+	});
+
+	return rearrangedLetters;
+};
 
 export default getShuffledWord;

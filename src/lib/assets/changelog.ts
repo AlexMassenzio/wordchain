@@ -1,5 +1,9 @@
 export const changelog = [
 	{
+		version: '0.10.0',
+		changes: ['Updated dictionary.', 'Added holiday goodies ❄']
+	},
+	{
 		version: '0.9.0',
 		changes: ['New mode added, Wordash!', 'Your final results are now shareable, even on refresh.']
 	},

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
+const { zinc } = require('tailwindcss/colors');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
@@ -16,7 +17,9 @@ module.exports = {
 			stone: colors.stone,
 			cyan: colors.cyan,
 			green: colors.green,
-			red: colors.red
+			red: colors.red,
+			yellow: colors.yellow,
+			zinc: colors.zinc
 		},
 		extend: {
 			spacing: {
