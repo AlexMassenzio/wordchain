@@ -1,7 +1,8 @@
 import Prando from 'prando';
 import { dictionary } from '$lib/assets/dictionary';
 
-export const checkIfValidWord = (word: string) => {
+export const checkIfValidWord = (word: string, wordList?: string[]) => {
+	if (wordList) return wordList.includes(word.toLowerCase());
 	return dictionary.includes(word.toLowerCase());
 };
 

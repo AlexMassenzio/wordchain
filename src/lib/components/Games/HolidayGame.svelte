@@ -6,29 +6,32 @@
 	import { gameProgress } from '$lib/store';
 	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
-	import { checkIfValidWord, generateWord } from '$lib/utils/wordUtils';
+	import { checkIfValidWord } from '$lib/utils/wordUtils';
+
+	let now = new Date();
+	export let wordList: string[];
 
 	gameProgress.set(0);
 
+	const wordsToSolve = wordList.length - 1;
 	let solvedWords: string[] = [];
 
-	let wordToGuess: string = generateWord(solvedWords);
+	let wordToGuess = wordList[0];
 	let playedLetters: LetterData[] = createLetterData([wordToGuess[0]], true);
 	let unplayedLetters: LetterData[];
 
 	let gameComplete = false;
 	let wasGameAlreadyPlayed = false;
 
-	let timer = 60;
-	let now = new Date();
+	let elapsedTime = 0;
 
 	let wrongGuess = false;
 
 	// update the board when we get a new word to guess
-	$: unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
-
-	$: if (timer <= 0) {
-		gameComplete = true;
+	$: {
+		if (wordToGuess !== undefined) {
+			unplayedLetters = createLetterData([...wordToGuess.substring(1)], false, true);
+		}
 	}
 
 	if (browser && window.localStorage.getItem('lastPlayed') == now.toDateString()) {
@@ -73,11 +76,13 @@
 	const processWord = () => {
 		const wordToCheck = formWord(playedLetters);
 
-		if (checkIfValidWord(wordToCheck)) {
+		if (checkIfValidWord(wordToCheck, wordList)) {
 			playedLetters = makeWordUsed(playedLetters, wordToCheck);
 			gameProgress.update((progress) => progress + 1);
 			solvedWords.push(wordToCheck);
-			wordToGuess = generateWord(solvedWords);
+			wordToGuess = wordList[$gameProgress];
+
+			gameComplete = $gameProgress == wordsToSolve;
 		} else {
 			wrongGuess = true;
 
@@ -91,9 +96,9 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if !gameComplete}
-	<Timer bind:elapsed={timer} isCountingDown={true} />
+	<Timer bind:elapsed={elapsedTime} />
 	<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
-	<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
+	<p class="p-2 text-center text-3xl italic text-stone-500">{$gameProgress}/{wordsToSolve}</p>
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
 	<button
@@ -108,10 +113,10 @@
 	</p>
 {:else}
 	<GameSummary
-		gameType="oneMinute"
+		gameType="chainSeven"
 		{wasGameAlreadyPlayed}
-		wordsToSolve={-1}
 		solvedWords={$gameProgress}
-		timeCompleted={timer / 1000}
+		{wordsToSolve}
+		timeCompleted={elapsedTime / 1000}
 	/>
 {/if}
