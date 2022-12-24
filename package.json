@@ -52,6 +52,7 @@
 		"@vercel/analytics": "^0.1.5",
 		"fs": "0.0.1-security",
 		"prando": "^6.0.1",
-		"url": "^0.11.0"
+		"url": "^0.11.0",
+		"web-vitals": "^3.1.0"
 	}
 }
