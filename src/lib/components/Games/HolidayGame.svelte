@@ -4,9 +4,10 @@
 	import GameSummary from '$lib/components/GameSummary.svelte';
 	import Timer from '$lib/components/Timer.svelte';
 	import { gameProgress } from '$lib/store';
-	import { formWord, makeWordUsed, type LetterData } from '$lib/utils/letterDataUtils';
+	import { formWord, makeWordUsed, provideHint, type LetterData } from '$lib/utils/letterDataUtils';
 	import { createLetterData } from '$lib/utils/letterDataUtils';
 	import { checkIfValidWord } from '$lib/utils/wordUtils';
+	import HintButton from '../HintButton.svelte';
 
 	let now = new Date();
 	export let wordList: string[];
@@ -91,6 +92,10 @@
 			}, 500);
 		}
 	};
+
+	const processHint = () => {
+		[playedLetters, unplayedLetters] = provideHint(playedLetters, unplayedLetters, wordToGuess);
+	};
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -101,12 +106,15 @@
 	<p class="p-2 text-center text-3xl italic text-stone-500">{$gameProgress}/{wordsToSolve}</p>
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
-	<button
-		class="bg-bg-600 m-auto mt-4 block rounded-md border-2 p-2 text-xl
+	<div class="mt-4 flex justify-center gap-4">
+		<HintButton hintCallback={processHint} />
+		<button
+			class="bg-bg-600 block rounded-md border-2 p-2 text-xl
             transition-colors
             hover:bg-stone-600"
-		on:click={processWord}>Check</button
-	>
+			on:click={processWord}>Check</button
+		>
+	</div>
 
 	<p class="p-2 text-center text-xl italic text-stone-500">
 		Hint: You can use your keyboard on desktop!

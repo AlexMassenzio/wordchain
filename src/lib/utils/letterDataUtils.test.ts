@@ -1,4 +1,12 @@
-import { createLetterData, formWord, makeWordUsed, type LetterData } from './letterDataUtils';
+import {
+	createLetterData,
+	formWord,
+	makeWordUsed,
+	provideHint,
+	resetBoard,
+	type LetterData
+} from './letterDataUtils';
+import { expectArrayEquivalence } from './testingUtils';
 
 describe('createLetterData', () => {
 	describe('given an array of letters', () => {
@@ -90,6 +98,176 @@ describe('makeWordUsed', () => {
 			expect(() => {
 				makeWordUsed(letterDataArray, 'howl');
 			}).toThrow('Could not find matching word');
+		});
+	});
+});
+
+describe('provideHint', () => {
+	it('should populate a hint into playedLetters', () => {
+		let playedLetters: LetterData[] = [
+			{ value: 'h', state: 'firstLetter' },
+			{ value: 'e', state: 'hint' },
+			{ value: 'o', state: 'inPlay' }
+		];
+
+		let unplayedLetters: LetterData[] = [
+			{ value: 'l', state: 'inPlay' },
+			{ value: 'l', state: 'inPlay' }
+		];
+
+		[playedLetters, unplayedLetters] = provideHint(playedLetters, unplayedLetters, 'hello');
+
+		let expectedPlayedLetters: LetterData[] = [
+			{ value: 'h', state: 'firstLetter' },
+			{ value: 'e', state: 'hint' },
+			{ value: 'l', state: 'hint' }
+		];
+
+		let expectedUnplayedLetters: LetterData[] = [
+			{ value: 'l', state: 'inPlay' },
+			{ value: 'o', state: 'inPlay' }
+		];
+
+		expect(playedLetters).toEqual(expectedPlayedLetters);
+		expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+	});
+	describe('given a previous word has been solved', () => {
+		it('should still populate a hint into playedLetters', () => {
+			let playedLetters: LetterData[] = [
+				{ value: 'y', state: 'used' },
+				{ value: 'a', state: 'used' },
+				{ value: 'h', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'h', state: 'firstLetter' },
+				{ value: 'e', state: 'hint' },
+				{ value: 'o', state: 'inPlay' }
+			];
+
+			let unplayedLetters: LetterData[] = [
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' }
+			];
+
+			[playedLetters, unplayedLetters] = provideHint(playedLetters, unplayedLetters, 'hello');
+
+			let expectedPlayedLetters: LetterData[] = [
+				{ value: 'y', state: 'used' },
+				{ value: 'a', state: 'used' },
+				{ value: 'h', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'h', state: 'firstLetter' },
+				{ value: 'e', state: 'hint' },
+				{ value: 'l', state: 'hint' }
+			];
+
+			let expectedUnplayedLetters: LetterData[] = [
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'o', state: 'inPlay' }
+			];
+
+			expect(playedLetters).toEqual(expectedPlayedLetters);
+			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+		});
+	});
+});
+
+describe('resetBoard', () => {
+	it('should return both boards with all "inPlay" letters in the unplayedLetters board', () => {
+		let playedLetters: LetterData[] = [
+			{ value: 'h', state: 'firstLetter' },
+			{ value: 'e', state: 'inPlay' },
+			{ value: 'o', state: 'inPlay' }
+		];
+
+		let unplayedLetters: LetterData[] = [
+			{ value: 'l', state: 'inPlay' },
+			{ value: 'l', state: 'inPlay' }
+		];
+
+		[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
+
+		let expectedPlayedLetters: LetterData[] = [{ value: 'h', state: 'firstLetter' }];
+
+		let expectedUnplayedLetters: LetterData[] = [
+			{ value: 'e', state: 'inPlay' },
+			{ value: 'l', state: 'inPlay' },
+			{ value: 'o', state: 'inPlay' },
+			{ value: 'l', state: 'inPlay' }
+		];
+
+		expect(playedLetters).toEqual(expectedPlayedLetters);
+		expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+	});
+	describe('given a previous word has been solved', () => {
+		it('should return both boards with all "inPlay" letters in the unplayedLetters board', () => {
+			let playedLetters: LetterData[] = [
+				{ value: 'y', state: 'used' },
+				{ value: 'a', state: 'used' },
+				{ value: 'h', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'h', state: 'firstLetter' },
+				{ value: 'e', state: 'inPlay' },
+				{ value: 'o', state: 'inPlay' }
+			];
+
+			let unplayedLetters: LetterData[] = [
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' }
+			];
+
+			[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
+
+			let expectedPlayedLetters: LetterData[] = [
+				{ value: 'y', state: 'used' },
+				{ value: 'a', state: 'used' },
+				{ value: 'h', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'o', state: 'used' },
+				{ value: 'h', state: 'firstLetter' }
+			];
+
+			let expectedUnplayedLetters: LetterData[] = [
+				{ value: 'e', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'o', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' }
+			];
+
+			expect(playedLetters).toEqual(expectedPlayedLetters);
+			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+		});
+	});
+	describe('when there are hints included', () => {
+		it('should return both boards with all "inPlay" letters in the unplayedLetters board', () => {
+			let playedLetters: LetterData[] = [
+				{ value: 'h', state: 'firstLetter' },
+				{ value: 'e', state: 'hint' },
+				{ value: 'o', state: 'inPlay' }
+			];
+
+			let unplayedLetters: LetterData[] = [
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' }
+			];
+
+			[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
+
+			let expectedPlayedLetters: LetterData[] = [
+				{ value: 'h', state: 'firstLetter' },
+				{ value: 'e', state: 'hint' }
+			];
+
+			let expectedUnplayedLetters: LetterData[] = [
+				{ value: 'l', state: 'inPlay' },
+				{ value: 'o', state: 'inPlay' },
+				{ value: 'l', state: 'inPlay' }
+			];
+
+			expect(playedLetters).toEqual(expectedPlayedLetters);
+			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
 		});
 	});
 });
