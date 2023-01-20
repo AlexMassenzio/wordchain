@@ -56,6 +56,11 @@ export const provideHint = (
 	const currentWordFirstIndex = playedLetters.findIndex((letter) => letter.state == 'firstLetter');
 	let hintLetterIndex = playedLetters.findIndex((letter) => letter.state == 'inPlay');
 
+	if (currentWordFirstIndex == -1) {
+		console.error('No hint letter found');
+		return [playedLetters, unplayedLetters];
+	}
+
 	if (hintLetterIndex == -1) {
 		hintLetterIndex = playedLetters.length;
 	}

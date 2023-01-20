@@ -6,7 +6,7 @@ import {
 	resetBoard,
 	type LetterData
 } from './letterDataUtils';
-import { expectArrayEquivalence } from './testingUtils';
+import { expectEqualIgnoreOrder } from './testingUtils';
 
 describe('createLetterData', () => {
 	describe('given an array of letters', () => {
@@ -129,7 +129,7 @@ describe('provideHint', () => {
 		];
 
 		expect(playedLetters).toEqual(expectedPlayedLetters);
-		expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+		expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 	});
 	describe('given a previous word has been solved', () => {
 		it('should still populate a hint into playedLetters', () => {
@@ -168,7 +168,7 @@ describe('provideHint', () => {
 			];
 
 			expect(playedLetters).toEqual(expectedPlayedLetters);
-			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+			expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 		});
 	});
 });
@@ -198,7 +198,7 @@ describe('resetBoard', () => {
 		];
 
 		expect(playedLetters).toEqual(expectedPlayedLetters);
-		expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+		expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 	});
 	describe('given a previous word has been solved', () => {
 		it('should return both boards with all "inPlay" letters in the unplayedLetters board', () => {
@@ -237,7 +237,7 @@ describe('resetBoard', () => {
 			];
 
 			expect(playedLetters).toEqual(expectedPlayedLetters);
-			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+			expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 		});
 	});
 	describe('when there are hints included', () => {
@@ -267,7 +267,7 @@ describe('resetBoard', () => {
 			];
 
 			expect(playedLetters).toEqual(expectedPlayedLetters);
-			expectArrayEquivalence(unplayedLetters, expectedUnplayedLetters);
+			expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 		});
 	});
 });
