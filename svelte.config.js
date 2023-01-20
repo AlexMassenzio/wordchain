@@ -11,7 +11,12 @@ const pkg = JSON.parse(json);
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess({ postcss: true }),
+	preprocess: preprocess({
+		postcss: true,
+		replace: [
+			['import.meta.env.VERCEL_ANALYTICS_ID', JSON.stringify(process.env.VERCEL_ANALYTICS_ID)]
+		]
+	}),
 
 	kit: {
 		adapter: adapter(),
