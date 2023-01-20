@@ -15,7 +15,9 @@
 		case 'inPlay':
 			stateStyle = 'bg-tile text-bg border-0';
 			break;
-
+		case 'hint':
+			stateStyle = 'bg-green-300 text-bg border-0';
+			break;
 		default:
 			break;
 	}
