@@ -117,13 +117,13 @@ describe('provideHint', () => {
 
 		[playedLetters, unplayedLetters] = provideHint(playedLetters, unplayedLetters, 'hello');
 
-		let expectedPlayedLetters: LetterData[] = [
+		const expectedPlayedLetters: LetterData[] = [
 			{ value: 'h', state: 'firstLetter' },
 			{ value: 'e', state: 'hint' },
 			{ value: 'l', state: 'hint' }
 		];
 
-		let expectedUnplayedLetters: LetterData[] = [
+		const expectedUnplayedLetters: LetterData[] = [
 			{ value: 'l', state: 'inPlay' },
 			{ value: 'o', state: 'inPlay' }
 		];
@@ -151,7 +151,7 @@ describe('provideHint', () => {
 
 			[playedLetters, unplayedLetters] = provideHint(playedLetters, unplayedLetters, 'hello');
 
-			let expectedPlayedLetters: LetterData[] = [
+			const expectedPlayedLetters: LetterData[] = [
 				{ value: 'y', state: 'used' },
 				{ value: 'a', state: 'used' },
 				{ value: 'h', state: 'used' },
@@ -162,7 +162,7 @@ describe('provideHint', () => {
 				{ value: 'l', state: 'hint' }
 			];
 
-			let expectedUnplayedLetters: LetterData[] = [
+			const expectedUnplayedLetters: LetterData[] = [
 				{ value: 'l', state: 'inPlay' },
 				{ value: 'o', state: 'inPlay' }
 			];
@@ -188,9 +188,9 @@ describe('resetBoard', () => {
 
 		[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
 
-		let expectedPlayedLetters: LetterData[] = [{ value: 'h', state: 'firstLetter' }];
+		const expectedPlayedLetters: LetterData[] = [{ value: 'h', state: 'firstLetter' }];
 
-		let expectedUnplayedLetters: LetterData[] = [
+		const expectedUnplayedLetters: LetterData[] = [
 			{ value: 'e', state: 'inPlay' },
 			{ value: 'l', state: 'inPlay' },
 			{ value: 'o', state: 'inPlay' },
@@ -220,7 +220,7 @@ describe('resetBoard', () => {
 
 			[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
 
-			let expectedPlayedLetters: LetterData[] = [
+			const expectedPlayedLetters: LetterData[] = [
 				{ value: 'y', state: 'used' },
 				{ value: 'a', state: 'used' },
 				{ value: 'h', state: 'used' },
@@ -229,7 +229,7 @@ describe('resetBoard', () => {
 				{ value: 'h', state: 'firstLetter' }
 			];
 
-			let expectedUnplayedLetters: LetterData[] = [
+			const expectedUnplayedLetters: LetterData[] = [
 				{ value: 'e', state: 'inPlay' },
 				{ value: 'l', state: 'inPlay' },
 				{ value: 'o', state: 'inPlay' },
@@ -255,12 +255,12 @@ describe('resetBoard', () => {
 
 			[playedLetters, unplayedLetters] = resetBoard(playedLetters, unplayedLetters);
 
-			let expectedPlayedLetters: LetterData[] = [
+			const expectedPlayedLetters: LetterData[] = [
 				{ value: 'h', state: 'firstLetter' },
 				{ value: 'e', state: 'hint' }
 			];
 
-			let expectedUnplayedLetters: LetterData[] = [
+			const expectedUnplayedLetters: LetterData[] = [
 				{ value: 'l', state: 'inPlay' },
 				{ value: 'o', state: 'inPlay' },
 				{ value: 'l', state: 'inPlay' }

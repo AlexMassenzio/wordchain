@@ -53,7 +53,7 @@ export const provideHint = (
 	unplayedLetters: LetterData[],
 	wordToSolve: string
 ) => {
-	let currentWordFirstIndex = playedLetters.findIndex((letter) => letter.state == 'firstLetter');
+	const currentWordFirstIndex = playedLetters.findIndex((letter) => letter.state == 'firstLetter');
 	let hintLetterIndex = playedLetters.findIndex((letter) => letter.state == 'inPlay');
 
 	if (hintLetterIndex == -1) {
@@ -78,7 +78,7 @@ export const provideHint = (
 };
 
 export const resetBoard = (playedLetters: LetterData[], unplayedLetters: LetterData[]) => {
-	let newPlayedLetters: LetterData[] = [];
+	const newPlayedLetters: LetterData[] = [];
 
 	for (let i = 0; i < playedLetters.length; i++) {
 		const letter = playedLetters[i];

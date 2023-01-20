@@ -2,7 +2,7 @@
 	let usedHints = 0;
 	let maxHints = 1;
 
-	export let hintCallback: () => void = () => {};
+	export let hintCallback: () => void;
 
 	let invokeHint = () => {
 		if (usedHints < maxHints) {
