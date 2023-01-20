@@ -101,7 +101,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if !gameComplete}
-	<!-- <Timer bind:elapsed={timer} isCountingDown={true} /> -->
+	<Timer bind:elapsed={timer} isCountingDown={true} />
 	<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
 	<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
 	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
