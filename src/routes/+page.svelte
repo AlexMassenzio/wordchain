@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { appVersion } from '$lib/store';
-	import Changelog from '$lib/components/Changelog.svelte';
 	import HowToPlay from '$lib/components/HowToPlay.svelte';
 	import SpecialGameBanner from '$lib/components/SpecialGameBanner.svelte';
 	import { getHolidayData, isTodayHoliday } from '$lib/utils/holidayUtils';
@@ -59,10 +58,6 @@
 </div>
 
 <HowToPlay bind:isOpen={isHowToPlayOpen} />
-
-{#if browser}
-	<Changelog bind:isOpen={isNewVersion} />
-{/if}
 
 {#if now.getMonth() == 11 && now.getDate() >= 24 && now.getDate() <= 25}
 	<Snowfall />

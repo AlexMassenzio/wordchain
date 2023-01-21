@@ -131,7 +131,7 @@ describe('provideHint', () => {
 		expect(playedLetters).toEqual(expectedPlayedLetters);
 		expectEqualIgnoreOrder(unplayedLetters, expectedUnplayedLetters);
 	});
-	
+
 	describe('given a previous word has been solved', () => {
 		it('should still populate a hint into playedLetters', () => {
 			let playedLetters: LetterData[] = [
