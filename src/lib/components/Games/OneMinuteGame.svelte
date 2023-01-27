@@ -59,24 +59,21 @@
 			playedLetters = playedLetters;
 		}
 	};
-	let k: number;
-	function handleKeydown(event: { key: string; keyCode: number }) {
-		k = event.keyCode;
+	let k: string;
+	function handleKeydown(event: KeyboardEvent) {
+		k = event.key;
 		// Allow backspace if the last letter is a part of our play
-		if (
-			(event.key == 'Backspace' || event.keyCode == 8) &&
-			playedLetters[playedLetters.length - 1].state == 'inPlay'
-		) {
+		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
+		} else if (event.key == 'Enter') {
+			processWord();
 		}
 		// Autofill a letter for convienence
-		else if ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 229) {
+		else {
 			let unplayedLetterIndex: number = unplayedLetters.findIndex(
 				(letter) => letter.value == event.key
 			);
 			moveLetter(true, unplayedLetterIndex);
-		} else if (event.key == 'Enter') {
-			processWord();
 		}
 	}
 
