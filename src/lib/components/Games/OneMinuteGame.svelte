@@ -123,8 +123,8 @@
 		class="bg-bg-600 block rounded-md border-2 p-2 text-xl
 		transition-colors
 		hover:bg-stone-600"
-		on:click={() => focus()}
-		>Give Up
+		on:click={() => prompt()}
+		>keyboard
 	</button>
 {:else}
 	<GameSummary
