@@ -66,7 +66,7 @@
 			moveLetter(false, playedLetters.length - 1);
 		}
 		// Autofill a letter for convienence
-		else if (event.keyCode >= 65 && event.keyCode <= 90) {
+		else if ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 229) {
 			let unplayedLetterIndex: number = unplayedLetters.findIndex(
 				(letter) => letter.value == event.key
 			);
