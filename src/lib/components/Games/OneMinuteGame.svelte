@@ -99,6 +99,7 @@
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
+<input id="mobileKeyboardInput" class="hidden" type="text" inputmode="text" />
 
 <!-- {#if !gameComplete} -->
 <Timer bind:elapsed={timer} isCountingDown={true} />
@@ -123,7 +124,7 @@
 	class="bg-bg-600 block rounded-md border-2 p-2 text-xl
 		transition-colors
 		hover:bg-stone-600"
-	on:click={() => prompt()}
+	on:click={() => document.getElementById('mobileKeyboardInput')?.focus()}
 	>keyboard
 </button>
 <!-- {:else}
