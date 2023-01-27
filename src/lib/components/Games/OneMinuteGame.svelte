@@ -59,8 +59,9 @@
 			playedLetters = playedLetters;
 		}
 	};
-
+	let k = '';
 	function handleKeydown(event: { key: string; keyCode: number }) {
+		k = event.key;
 		// Allow backspace if the last letter is a part of our play
 		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
@@ -98,9 +99,9 @@
 	};
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
+<!-- <svelte:window on:keydown={handleKeydown} /> -->
 <input id="mobileKeyboardInput" type="text" inputmode="text" on:keyup={handleKeydown} />
-
+<p>{k}</p>
 <!-- {#if !gameComplete} -->
 <Timer bind:elapsed={timer} isCountingDown={true} />
 <Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
