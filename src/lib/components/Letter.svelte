@@ -28,7 +28,7 @@
 	class="mr-1 h-16 w-16 flex-none rounded text-2xl
 	{stateStyle}
 	select-none transition-colors"
-	on:click
+	on:mousedown
 >
 	{letter.value.toUpperCase()}
 </button>

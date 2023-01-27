@@ -5,6 +5,7 @@
 	import { browser } from '$app/environment';
 
 	let isChangelogOpen = false;
+	const now = new Date();
 </script>
 
 <div class="fixed inset-0 bg-bg text-text">
@@ -15,7 +16,9 @@
 	{/if}
 
 	<footer class="fixed left-0 bottom-0 grid w-screen grid-cols-3">
-		<p class="col-start-2 p-2 text-center text-2xl text-stone-500">©Alex Massenzio 2022</p>
+		<p class="col-start-2 p-2 text-center text-2xl text-stone-500">
+			©Alex Massenzio 2022-{now.getFullYear()}
+		</p>
 		<div class="flex items-end justify-end">
 			<button
 				class="p-2 text-2xl italic text-stone-500
