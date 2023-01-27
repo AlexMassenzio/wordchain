@@ -99,7 +99,7 @@
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
-<input id="mobileKeyboardInput" class="hidden" type="text" inputmode="text" />
+<input id="mobileKeyboardInput" type="text" inputmode="text" />
 
 <!-- {#if !gameComplete} -->
 <Timer bind:elapsed={timer} isCountingDown={true} />
