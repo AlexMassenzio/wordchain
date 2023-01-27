@@ -59,11 +59,14 @@
 			playedLetters = playedLetters;
 		}
 	};
-	let k = '';
+	let k: number;
 	function handleKeydown(event: { key: string; keyCode: number }) {
-		k = event.key;
+		k = event.keyCode;
 		// Allow backspace if the last letter is a part of our play
-		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
+		if (
+			(event.key == 'Backspace' || event.keyCode == 8) &&
+			playedLetters[playedLetters.length - 1].state == 'inPlay'
+		) {
 			moveLetter(false, playedLetters.length - 1);
 		}
 		// Autofill a letter for convienence
