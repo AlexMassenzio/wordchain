@@ -100,33 +100,33 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-{#if !gameComplete}
-	<Timer bind:elapsed={timer} isCountingDown={true} />
-	<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
-	<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
-	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
+<!-- {#if !gameComplete} -->
+<Timer bind:elapsed={timer} isCountingDown={true} />
+<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
+<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
+<Board letters={unplayedLetters} isHand={true} {moveLetter} />
 
-	<div class="mt-4 flex justify-center gap-4">
-		<HintButton hintCallback={processHint} />
-		<button
-			class="bg-bg-600 block rounded-md border-2 p-2 text-xl
-            transition-colors
-            hover:bg-stone-600"
-			on:click={processWord}>Check</button
-		>
-	</div>
-
-	<p class="p-2 text-center text-xl italic text-stone-500">
-		Hint: You can use your keyboard on desktop!
-	</p>
+<div class="mt-4 flex justify-center gap-4">
+	<HintButton hintCallback={processHint} />
 	<button
 		class="bg-bg-600 block rounded-md border-2 p-2 text-xl
+            transition-colors
+            hover:bg-stone-600"
+		on:click={processWord}>Check</button
+	>
+</div>
+
+<p class="p-2 text-center text-xl italic text-stone-500">
+	Hint: You can use your keyboard on desktop!
+</p>
+<button
+	class="bg-bg-600 block rounded-md border-2 p-2 text-xl
 		transition-colors
 		hover:bg-stone-600"
-		on:click={() => prompt()}
-		>keyboard
-	</button>
-{:else}
+	on:click={() => prompt()}
+	>keyboard
+</button>
+<!-- {:else}
 	<GameSummary
 		gameType="oneMinute"
 		{wasGameAlreadyPlayed}
@@ -134,4 +134,4 @@
 		solvedWords={$gameProgress}
 		timeCompleted={timer / 1000}
 	/>
-{/if}
+{/if} -->
