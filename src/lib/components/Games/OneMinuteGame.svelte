@@ -60,19 +60,17 @@
 		}
 	};
 
-	function handleKeydown(event: { key: string; keyCode: number }) {
+	function handleKeydown(event: KeyboardEvent) {
 		// Allow backspace if the last letter is a part of our play
 		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
-		}
-		// Autofill a letter for convienence
-		else if (event.keyCode >= 65 && event.keyCode <= 90) {
-			let unplayedLetterIndex: number = unplayedLetters.findIndex(
-				(letter) => letter.value == event.key
-			);
-			moveLetter(true, unplayedLetterIndex);
 		} else if (event.key == 'Enter') {
 			processWord();
+		} else {
+			let unplayedLetterIndex: number = unplayedLetters.findIndex(
+				(letter) => letter.value == event.key.toLowerCase()
+			);
+			moveLetter(true, unplayedLetterIndex);
 		}
 	}
 

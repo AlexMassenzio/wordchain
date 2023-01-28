@@ -33,7 +33,7 @@
 		{wrongGuess && 'animate-shake border-red-400'} transition-all"
 	>
 		{#each letters as letter, index}
-			<Letter {letter} on:click={() => moveLetter(isHand, index)} />
+			<Letter {letter} on:mousedown={() => moveLetter(isHand, index)} />
 		{/each}
 	</div>
 </div>
