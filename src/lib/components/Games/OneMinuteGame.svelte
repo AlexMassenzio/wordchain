@@ -59,19 +59,16 @@
 			playedLetters = playedLetters;
 		}
 	};
-	let k: string;
+
 	function handleKeydown(event: KeyboardEvent) {
-		k = event.key;
 		// Allow backspace if the last letter is a part of our play
 		if (event.key == 'Backspace' && playedLetters[playedLetters.length - 1].state == 'inPlay') {
 			moveLetter(false, playedLetters.length - 1);
 		} else if (event.key == 'Enter') {
 			processWord();
-		}
-		// Autofill a letter for convienence
-		else {
+		} else {
 			let unplayedLetterIndex: number = unplayedLetters.findIndex(
-				(letter) => letter.value == event.key
+				(letter) => letter.value == event.key.toLowerCase()
 			);
 			moveLetter(true, unplayedLetterIndex);
 		}
@@ -99,36 +96,28 @@
 	};
 </script>
 
-<!-- <svelte:window on:keydown={handleKeydown} /> -->
-<textarea id="mobileKeyboardInput" inputmode="text" autocorrect="off" on:keyup={handleKeydown} />
-<p>{k}</p>
-<!-- {#if !gameComplete} -->
-<Timer bind:elapsed={timer} isCountingDown={true} />
-<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
-<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
-<Board letters={unplayedLetters} isHand={true} {moveLetter} />
+<svelte:window on:keydown={handleKeydown} />
 
-<div class="mt-4 flex justify-center gap-4">
-	<HintButton hintCallback={processHint} />
-	<button
-		class="bg-bg-600 block rounded-md border-2 p-2 text-xl
+{#if !gameComplete}
+	<Timer bind:elapsed={timer} isCountingDown={true} />
+	<Board letters={playedLetters} isHand={false} bind:wrongGuess {moveLetter} />
+	<p class="p-2 text-center text-3xl italic text-stone-500">#{$gameProgress}</p>
+	<Board letters={unplayedLetters} isHand={true} {moveLetter} />
+
+	<div class="mt-4 flex justify-center gap-4">
+		<HintButton hintCallback={processHint} />
+		<button
+			class="bg-bg-600 block rounded-md border-2 p-2 text-xl
             transition-colors
             hover:bg-stone-600"
-		on:click={processWord}>Check</button
-	>
-</div>
+			on:click={processWord}>Check</button
+		>
+	</div>
 
-<p class="p-2 text-center text-xl italic text-stone-500">
-	Hint: You can use your keyboard on desktop!
-</p>
-<button
-	class="bg-bg-600 block rounded-md border-2 p-2 text-xl
-		transition-colors
-		hover:bg-stone-600"
-	on:click={() => document.getElementById('mobileKeyboardInput')?.focus()}
-	>keyboard
-</button>
-<!-- {:else}
+	<p class="p-2 text-center text-xl italic text-stone-500">
+		Hint: You can use your keyboard on desktop!
+	</p>
+{:else}
 	<GameSummary
 		gameType="oneMinute"
 		{wasGameAlreadyPlayed}
@@ -136,4 +125,4 @@
 		solvedWords={$gameProgress}
 		timeCompleted={timer / 1000}
 	/>
-{/if} -->
+{/if}
