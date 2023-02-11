@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@playwright/test': ^1.29.1
   '@rgossiaux/svelte-headlessui': ^1.0.2
-  '@sveltejs/adapter-auto': ^1.0.0
-  '@sveltejs/kit': ^1.0.0
+  '@sveltejs/adapter-auto': ^2.0.0
+  '@sveltejs/kit': ^1.5.5
   '@testing-library/dom': ^8.19.0
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/svelte': ^3.2.2
@@ -48,8 +48,8 @@ dependencies:
 devDependencies:
   '@playwright/test': 1.29.1
   '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.55.0
-  '@sveltejs/adapter-auto': 1.0.0_@sveltejs+kit@1.0.0
-  '@sveltejs/kit': 1.0.0_svelte@3.55.0+vite@4.0.1
+  '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.5.5
+  '@sveltejs/kit': 1.5.5_svelte@3.55.0+vite@4.0.1
   '@testing-library/dom': 8.19.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/svelte': 3.2.2_svelte@3.55.0
@@ -462,18 +462,18 @@ packages:
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}
     dev: true
 
-  /@sveltejs/adapter-auto/1.0.0_@sveltejs+kit@1.0.0:
-    resolution: {integrity: sha512-yKyPvlLVua1bJ/42FrR3X041mFGdB4GzTZOAEoHUcNBRE5Mhx94+eqHpC3hNvAOiLEDcKfVO0ObyKSu7qldU+w==}
+  /@sveltejs/adapter-auto/2.0.0_@sveltejs+kit@1.5.5:
+    resolution: {integrity: sha512-b+gkHFZgD771kgV3aO4avHFd7y1zhmMYy9i6xOK7m/rwmwaRO8gnF5zBc0Rgca80B2PMU1bKNxyBTHA14OzUAQ==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.0.0_svelte@3.55.0+vite@4.0.1
+      '@sveltejs/kit': 1.5.5_svelte@3.55.0+vite@4.0.1
       import-meta-resolve: 2.2.0
     dev: true
 
-  /@sveltejs/kit/1.0.0_svelte@3.55.0+vite@4.0.1:
-    resolution: {integrity: sha512-6VgD5C3i2XOT7GRBi5LaPPLiFAmpiDkhKJNVt8fLg1RmaL6f7rT4Kiwi2XGpYRj3V1F4t1QRdsfmAkkDUKY3OA==}
-    engines: {node: '>=16.14'}
+  /@sveltejs/kit/1.5.5_svelte@3.55.0+vite@4.0.1:
+    resolution: {integrity: sha512-NJry1mvcIBITVe9WyAGu39Cf33z8wRKzut/Oug4zqMVUpX+i7fG17+GyvLCh9GXdmIkqwSeSMROHDKRODvd6BA==}
+    engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
     peerDependencies:
@@ -483,7 +483,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.1
       '@types/cookie': 0.5.1
       cookie: 0.5.0
-      devalue: 4.2.0
+      devalue: 4.3.0
       esm-env: 1.0.0
       kleur: 4.1.5
       magic-string: 0.27.0
@@ -493,7 +493,7 @@ packages:
       sirv: 2.0.2
       svelte: 3.55.0
       tiny-glob: 0.2.9
-      undici: 5.14.0
+      undici: 5.18.0
       vite: 4.0.1
     transitivePeerDependencies:
       - supports-color
@@ -1277,8 +1277,8 @@ packages:
       minimist: 1.2.7
     dev: true
 
-  /devalue/4.2.0:
-    resolution: {integrity: sha512-mbjoAaCL2qogBKgeFxFPOXAUsZchircF+B/79LD4sHH0+NHfYm8gZpQrskKDn5gENGt35+5OI1GUF7hLVnkPDw==}
+  /devalue/4.3.0:
+    resolution: {integrity: sha512-n94yQo4LI3w7erwf84mhRUkUJfhLoCZiLyoOZ/QFsDbcWNZePrLwbQpvZBUG2TNxwV3VjCKPxkiiQA6pe3TrTA==}
     dev: true
 
   /didyoumean/1.2.2:
@@ -3407,8 +3407,8 @@ packages:
     hasBin: true
     dev: true
 
-  /undici/5.14.0:
-    resolution: {integrity: sha512-yJlHYw6yXPPsuOH0x2Ib1Km61vu4hLiRRQoafs+WUgX1vO64vgnxiCEN9dpIrhZyHFsai3F0AEj4P9zy19enEQ==}
+  /undici/5.18.0:
+    resolution: {integrity: sha512-1iVwbhonhFytNdg0P4PqyIAXbdlVZVebtPDvuM36m66mRw4OGrCm2MYynJv/UENFLdP13J1nPVQzVE2zTs1OeA==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0

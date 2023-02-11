@@ -117,13 +117,6 @@
 	<p class="p-2 text-center text-xl italic text-stone-500">
 		Hint: You can use your keyboard on desktop!
 	</p>
-	<button
-		class="bg-bg-600 block rounded-md border-2 p-2 text-xl
-		transition-colors
-		hover:bg-stone-600"
-		on:click={() => focus()}
-		>Give Up
-	</button>
 {:else}
 	<GameSummary
 		gameType="oneMinute"
