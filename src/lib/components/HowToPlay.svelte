@@ -20,7 +20,7 @@
 		class="fixed inset-x-10 z-10 rounded-2xl bg-bg p-8 text-text sm:inset-x-1/4 sm:inset-y-24"
 	>
 		<div class="max-h-full overflow-y-hidden text-center">
-			<DialogTitle class="text-4xl">How to Play</DialogTitle>
+			<DialogTitle class="text-4xl font-semibold tracking-tight">How to Play</DialogTitle>
 			<video
 				class="w-100% m-auto mt-8 rounded-xl border-2 border-stone-600 p-2 sm:w-1/2"
 				src="/tutorial.mp4"
@@ -30,13 +30,13 @@
 				<track kind="captions" />
 			</video>
 
-			<div class="mt-8">
-				<h1 class="text-2xl">Connect the Wordchain with five-letter words!</h1>
-				<h2 class="mt-2 text-xl">The first letter is placed automatically.</h2>
-				<h2 class="text-xl">
+			<div class="mt-8 text-xl sm:text-2xl">
+				<h1>Connect the Wordchain with five-letter words!</h1>
+				<h2 class="mt-2 text-stone-400">The first letter is placed automatically.</h2>
+				<h2 class="text-stone-400">
 					The last letter of the previous word becomes the first letter of the new word.
 				</h2>
-				<h2 class="text-xl">You can tap letter tiles or use your keyboard on PC to play.</h2>
+				<h2 class="text-stone-400">You can tap letter tiles or use your keyboard on PC to play.</h2>
 			</div>
 
 			<button

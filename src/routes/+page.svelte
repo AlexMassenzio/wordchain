@@ -25,7 +25,7 @@
 </script>
 
 <div class="text-center">
-	<h1 class="pt-36 text-6xl sm:text-8xl">Wordchain</h1>
+	<h1 class="pt-36 text-6xl tracking-tight sm:text-8xl">Wordchain</h1>
 	<div class="mt-8 align-middle">
 		<a
 			class="rounded-md border-2 bg-tile p-2 text-2xl text-stone-800 transition-colors
